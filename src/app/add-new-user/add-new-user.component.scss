@@ -6,7 +6,13 @@ section{
     background-color: $mainColor;
     border-radius: 16px;
     border: 1px solid $fontColor;
+    position: relative;
 
+
+    .progress-contaiiner{
+        width: 100%;
+        background-color: beige;
+    }
 
     .mat-mdc-dialog-container, 
     .mdc-dialog__title, 

@@ -1,5 +1,18 @@
 <section>
-    <button (click)="openAddUserDialog()" mat-icon-button class="add-user-btn" matTooltip="Add new user" matTooltipPosition="above">
+    <mat-list>
+        @for (user of allUsers; track user.id) {
+            <mat-list-item>
+                <span matListItemTitle>{{ user.firstName }} {{ user.lastName }}</span>
+                <span matListItemLine>{{ user.city }}</span>
+            </mat-list-item>
+        }
+    </mat-list>
+
+
+
+
+    <button (click)="openAddUserDialog()" mat-icon-button class="add-user-btn" matTooltip="Add new user"
+        matTooltipPosition="above">
         <i class="material-icons">person_add</i>
     </button>
 </section>
