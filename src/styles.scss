@@ -1,1 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+@import './theme.scss';
+$bgColor: #00293B;
+$mainColor: #1E656D;
+$secondColor: #F62901;
+$secondHover: rgb(0, 0, 0, 0.2);
+$fontColor: #F1F3CE;
+
+
+html,
+body {
+     height: 100%;
+}
+
+body {
+     margin: 0;
+     font-family: Roboto, "Helvetica Neue", sans-serif;
+     background-color: $bgColor;
+}
+
+.full-width{
+     width: 100%;
+}
+
+.mdc-text-field--outlined {
+     --mdc-outlined-text-field-container-shape: 16px !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+     border-radius: 16px !important;
+ }
+
+ .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+     background-color: transparent !important;
+     border-radius: 16px;
+ }
+
+
+  
+@mixin displayFlex($jc: center, $ai: center, $dir: row) {
+     display: flex;
+     flex-direction: $dir;
+     justify-content: $jc;
+     align-items: $ai;
+ }

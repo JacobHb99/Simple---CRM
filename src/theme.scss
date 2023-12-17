@@ -1,0 +1,21 @@
+@use './palette.scss' as palette;
+@use '@angular/material' as mat;
+@include mat.core();
+
+$app-primary: mat.define-palette(palette.$md-mcgpalette1);
+$app-accent: mat.define-palette(palette.$md-mcgpalette3);
+
+$app-theme: mat.define-light-theme(
+    (
+        color: (
+            primary: $app-primary,
+            accent: $app-accent,
+        ),
+    )
+);
+// Emit theme-dependent styles for common features used across multiple components.
+@include mat.core-theme($app-theme);
+@include mat.button-theme($app-theme);
+
+
+@include mat.all-component-themes($app-theme);

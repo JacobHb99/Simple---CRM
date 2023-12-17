@@ -1,0 +1,19 @@
+@import '../../styles.scss';
+$material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/';
+
+
+section {
+
+
+
+
+    .add-user-btn {
+        background-color: $secondColor;
+        color: $fontColor;
+        position: absolute;
+        bottom: 56px;
+        right: 56px;
+        @include displayFlex(center, center);
+        --mdc-icon-button-state-layer-size: 70px;
+    }
+}

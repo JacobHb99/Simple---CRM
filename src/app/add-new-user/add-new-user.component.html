@@ -1,0 +1,52 @@
+<section>
+    <h1 mat-dialog-title>Add user</h1>
+    <div mat-dialog-content>
+        <p>What's the name of the user?</p>
+
+        <div class="name-container">
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label>First name</mat-label>
+                <input matInput [(ngModel)]="user.firstName">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label>Last name</mat-label>
+                <input matInput [(ngModel)]="user.lastName">
+            </mat-form-field>
+        </div>
+
+        <div class="address-container">
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label>Street</mat-label>
+                <input matInput [(ngModel)]="user.street">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label>City</mat-label>
+                <input matInput [(ngModel)]="user.city">
+            </mat-form-field>
+        </div>
+
+        <div class="date-container">
+            <mat-form-field appearance="outline" color="accent" class="full-width">
+                <mat-label>MM/DD/YYYY</mat-label>
+                <input matInput [matDatepicker]="picker1" [(ngModel)]="dateOfBirth">
+                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div class="zip-container">
+            <mat-form-field appearance="outline" color="accent" class="full-width">
+                <mat-label>Zipcode</mat-label>
+                <input matInput [(ngModel)]="user.zipCode">
+            </mat-form-field>
+        </div>
+    </div>
+
+
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">No Thanks</button>
+        <button mat-button cdkFocusInitial (click)="saveUser()">Ok</button>
+    </div>
+</section>
