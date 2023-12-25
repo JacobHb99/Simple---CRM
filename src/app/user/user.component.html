@@ -1,15 +1,12 @@
 <section>
     <mat-list>
         @for (user of allUsers; track user.id) {
-            <mat-list-item>
+            <mat-list-item [routerLink]="[user.idField]">
                 <span matListItemTitle>{{ user.firstName }} {{ user.lastName }}</span>
                 <span matListItemLine>{{ user.city }}</span>
             </mat-list-item>
         }
     </mat-list>
-
-
-
 
     <button (click)="openAddUserDialog()" mat-icon-button class="add-user-btn" matTooltip="Add new user"
         matTooltipPosition="above">

@@ -1,12 +1,10 @@
 <section>
     <h1 mat-dialog-title>Add user</h1>
     <div mat-dialog-content>
-        <p>What's the name of the user?</p>
-
         <div class="name-container">
             <mat-form-field appearance="outline" color="accent">
                 <mat-label>First name</mat-label>
-                <input [disabled]="isLoading" matInput [(ngModel)]="user.firstName" class="input">
+                <input [disabled]="isLoading" [value]="user.firstName" matInput [(ngModel)]="user.firstName" class="input">
             </mat-form-field>
 
             <mat-form-field appearance="outline" color="accent">
@@ -27,35 +25,25 @@
             </mat-form-field>
         </div>
 
-        <div class="date-container">
-            <mat-form-field appearance="outline" color="accent" class="full-width">
-                <mat-label>MM/DD/YYYY</mat-label>
-                <input [disabled]="isLoading" matInput [matDatepicker]="picker1" [(ngModel)]="dateOfBirth" class="input">
-                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
-                <mat-datepicker #picker1></mat-datepicker>
-            </mat-form-field>
-        </div>
-
         <div class="zip-container">
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label>Zipcode</mat-label>
+                <input [disabled]="isLoading" matInput [(ngModel)]="user.zipCode" class="input">
+            </mat-form-field>
+
             <mat-form-field appearance="outline" color="accent">
                 <mat-label>e-mail</mat-label>
                 <input [disabled]="isLoading" matInput [(ngModel)]="user.email" class="input">
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" color="accent" class="full-width">
-                <mat-label>Zipcode</mat-label>
-                <input [disabled]="isLoading" matInput [(ngModel)]="user.zipCode" class="input">
             </mat-form-field>
         </div>
     </div>
 
 
     <div mat-dialog-actions>
-        <button [disabled]="isLoading" mat-button (click)="onNoClick()">No Thanks</button>
-        <button [disabled]="isLoading" mat-button cdkFocusInitial (click)="saveUser()">Ok</button>
+        <button [disabled]="isLoading" mat-button (click)="onNoClick()">Cancel</button>
+        <button [disabled]="isLoading" mat-button cdkFocusInitial (click)="saveUser()">Save</button>
     </div>
     @if (isLoading) {
         <mat-progress-bar class="progress-bar"  mode="indeterminate" color="warn"></mat-progress-bar>
-
     }
 </section>

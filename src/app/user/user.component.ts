@@ -8,6 +8,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { User } from "../../models/user.class";
 import { MatListModule } from '@angular/material/list';
 import { Firestore, collection, collectionData, addDoc, doc, getDocs, onSnapshot, query } from '@angular/fire/firestore';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { UserDetailComponent } from '../user-detail/user-detail.component';
 
 
 
@@ -20,7 +22,10 @@ import { Firestore, collection, collectionData, addDoc, doc, getDocs, onSnapshot
     MatTooltipModule,
     MatDialogModule,
     MatNativeDateModule,
-    MatListModule
+    MatListModule,
+    RouterLink,
+    RouterLinkActive,
+    UserDetailComponent
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
@@ -30,6 +35,8 @@ import { Firestore, collection, collectionData, addDoc, doc, getDocs, onSnapshot
 export class UserComponent {
   user = new User;
   allUsers = Array();
+  userIds = Array();
+  cities = Array();
 
   constructor(public dialog: MatDialog, private firestore: Firestore) {
   }
@@ -44,21 +51,12 @@ export class UserComponent {
     const userCollection = collection(this.firestore, 'users');
     const q = query(userCollection);
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      snapshot.docChanges().forEach((change) => {
-        if (change.type === "added") {
-            this.allUsers.push(change.doc.data());
-          }
-        if (change.type === "modified") {
-            console.log("Modified user: ", change.doc.data());
-        }
-        if (change.type === "removed") {
-            console.log("Removed user: ", change.doc.data());
-        }
-        
-      });
+      this.allUsers = [];
+      snapshot.forEach((doc) => {
+        this.addUserId(doc.data(), doc.id); 
+        console.log(this.allUsers);
+    });
     });   
-    console.log(this.allUsers);
-    
   }
 
 
@@ -66,6 +64,9 @@ export class UserComponent {
     const dialogRef = this.dialog.open(AddNewUserComponent, { panelClass: 'custom-container' });
   }
 
-
-
+  
+  addUserId(user: any, id: any) {
+      user.idField = id;
+      this.allUsers.push(user); 
+  }
 }

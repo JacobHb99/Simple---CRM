@@ -13,7 +13,7 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
     .sidenav-container{
         width: 300px;
         font-size: 16px;
-        background-color: $secondColor;
+        background-color: $mainColor;
         color: $fontColor;
         @include displayFlex(center, center, column);
 
@@ -23,8 +23,10 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
             padding-right: 16px;
             min-height: 56px;
             padding: 16px;
-
-
+            font-size: 32px;
+            font-weight: 900;
+            color: $secondColor;
+            
             @include displayFlex(center, center, row);
         }
 
@@ -74,12 +76,11 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
 }
 
 .router-container{
-    margin: 16px 56px;
-    background-color: $mainColor;
-    border-radius: 16px;
+    margin-inline: 56px;
+    margin-top: 16px;
 }
 
 .activeLink{
-    background-color: #ef0f00 !important;
+    background-color: rgba(0, 0, 0, 0.2) !important;
     border-radius: 16px;
 }

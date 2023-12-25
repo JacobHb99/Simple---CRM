@@ -1,0 +1,72 @@
+<section>
+    <mat-card class="first-screen-card">
+        <mat-card-content>
+            <div class="img-container">
+                <button mat-icon-button (click)="openChangeUserDialog()">
+                    <i class="material-icons">mode</i>
+                </button>
+                <img class="user-img" src="../../assets/images/m.png" alt="">
+
+                <div class="first-info-container">
+                    <div class="name-container">
+                        <span>{{ user.firstName }}</span>
+                        <span>{{ user.lastName }}</span>
+                    </div>
+
+                    <div class="email-container">
+                        <span>{{ user.email }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-container">
+                <div class="street-container stat-container">
+                    <div class="stat">Street:</div>
+                    <div class="description">
+                        <span>{{ user.street }}</span>
+                    </div>
+                </div>
+
+                <div class="location-container stat-container">
+                    <div class="stat">Location:</div>
+                    <div class="description">
+                        <span>{{ user.zipCode }}, </span>
+                        <span>{{ user.city }}</span>
+                    </div>
+                </div>
+
+                <div class="birth-container stat-container">
+                    <div class="stat">Birthday:</div>
+                    <div class="description">
+                        <span>{{ date }} </span>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <div class="info-details-overview-container">
+        <mat-card class="first-info-card">
+            <mat-card-content>
+                <div class="text-container">
+                    <h1><b>{{ orderAmount }}</b></h1>
+                    <span>Orders</span>
+                </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="first-info-card">
+            <mat-card-content>
+                <div class="text-container">
+                    <h1>{{ total }}€</h1>
+                    <span>Total</span>
+                </div>
+            </mat-card-content>
+          </mat-card>
+    </div>
+
+    <button (click)="openOrderDialog()" mat-icon-button class="add-user-btn" matTooltip="Add new order"
+        matTooltipPosition="above">
+        <i class="material-icons">add_shopping_cart</i>
+    </button>
+</section>

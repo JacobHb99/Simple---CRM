@@ -1,0 +1,142 @@
+@import '../../styles.scss';
+$material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/';
+
+
+section{
+
+
+
+    .add-user-btn {
+        background-color: $secondColor;
+        color: $fontColor;
+        position: absolute;
+        bottom: 56px;
+        right: 56px;
+        @include displayFlex(center, center);
+        --mdc-icon-button-state-layer-size: 70px;
+    }
+    
+    .img-container{
+        @include displayFlex(flex-start, flex-end);
+        border-top-right-radius: 16px;
+        border-top-left-radius: 16px;
+        min-height: 30vh;
+        padding-bottom: 8px;
+        position: relative;
+
+        button{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            cursor: pointer;
+            color: $fontColor;
+            transition: all 0.2s ease-in-out;
+
+            &:hover{
+                color: $bgColor;
+            }
+        }
+
+        .user-img{
+            height: 120px;
+            width: 120px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 4px solid $bgColor;
+            background-color: $fontColor;
+        }
+
+        .first-info-container{
+            @include displayFlex(center, flex-start, column);
+            height: 120px;
+            margin-left: 16px;
+
+            .name-container{
+                @include displayFlex();
+                gap: 4px;
+    
+    
+                span{
+                    font-size: 24px;
+                    font-weight: 600;
+                }
+    
+            }
+    
+            .email-container{
+    
+    
+                span{
+                    font-size: 16px;
+                    font-weight: 400;
+                }
+            }
+        }
+
+
+    }
+
+    .info-container{
+        padding-top: 16px;
+
+
+        .stat-container{
+            @include displayFlex(flex-start);
+            gap: 8px;
+
+            .stat{
+                color: $bgColor;
+            }
+
+            .description{
+
+            }
+        }
+    }
+
+    .info-details-overview-container {
+        @include displayFlex(flex-start);
+        gap: 16px;
+        margin-top: 16px;
+
+
+        .text-container{
+            @include displayFlex(center, center, column);
+            gap: 8px;
+        }
+    }
+
+}
+
+.first-screen-card{
+    background-color: $secondColor;
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.first-info-card {
+    background-color: $fontColor;
+    color: $bgColor;
+    padding: 24px;  
+    border-radius: 16px;
+  
+
+    h1 {
+        font-size: 32px;
+        font-weight: 900;
+    }
+
+    span{
+        font-size: 24px;
+        font-weight: 700;
+    }
+}
+
+mat-card-content{
+    padding: 0;
+    margin: 0;
+
+    &:first-child{
+        padding-top: 0;
+    }
+}

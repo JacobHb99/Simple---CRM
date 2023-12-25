@@ -7,7 +7,7 @@ import {MatDialogModule, MatDialog, MatDialogRef} from '@angular/material/dialog
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { User } from "../../models/user.class";
-import { Firestore, collection, collectionData, addDoc, doc, getDoc, onSnapshot } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
@@ -48,14 +48,13 @@ export class AddNewUserComponent {
 
 
   onNoClick(): void {
+    this.closeDialog();
   }
 
 
   async saveUser() {
     this.isLoading = true;
     this.user.dateOfBirth = this.dateOfBirth.getTime();
-    console.log(this.user);  
-
     const docRef = await addDoc(this.userCollection, this.user.toJson());  
     this.isLoading = false;
     this.closeDialog();

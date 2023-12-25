@@ -1,6 +1,8 @@
 <mat-drawer-container class="mat-drawer-container" [hasBackdrop]="false">
   <mat-drawer class="sidenav-container" #drawer [mode]="'side'" [opened]="true">
-    <div class="logo">SimpleCrmLogo</div>
+    <div class="logo">
+      Simple-CRM
+    </div>
 
     <ul>
       <li routerLink="/dashboard" routerLinkActive="activeLink"><i class="material-icons">account_balance</i> Dashboard</li>
@@ -13,7 +15,7 @@
 
     <p>
       <mat-toolbar class="toolbar">
-        <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
+        <button mat-icon-button (click)="drawer.toggle()">
           <i class="material-icons">menu</i>
         </button>
         

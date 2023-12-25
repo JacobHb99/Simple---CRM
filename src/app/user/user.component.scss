@@ -4,7 +4,21 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
 
 section {
 
+    mat-list-item{
+        border: 2px solid $mainColor;
+        border-radius: 16px;
+        cursor: pointer;
+        margin-bottom: 8px;
+        @include displayFlex();
 
+        span{
+            width: fit-content;
+        }
+
+        &:hover{
+            border: 2px solid $secondColor;
+        }
+    }
 
 
     .add-user-btn {
@@ -17,3 +31,21 @@ section {
         --mdc-icon-button-state-layer-size: 70px;
     }
 }
+
+.mdc-list-item__primary-text {
+    color: $fontColor;
+}
+
+.mdc-list-item__secondary-text {
+    color: $fontColor;
+
+}
+
+.mdc-list-item:hover .mdc-list-item__primary-text {
+    color: $fontColor;
+}
+
+.mdc-list-item:hover .mdc-list-item__secondary-text {
+    color: $fontColor;
+}
+

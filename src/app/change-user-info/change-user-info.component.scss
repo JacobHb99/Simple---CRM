@@ -1,12 +1,15 @@
 @import '../../styles.scss';
 $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/';
 
-
 section{
     background-color: $mainColor;
     border-radius: 16px;
     position: relative;
+    padding: 16px;
 
+    p{
+        color: $fontColor !important;
+    }
 
     .progress-bar{
         position: absolute;
