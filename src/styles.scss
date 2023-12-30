@@ -18,7 +18,11 @@ body {
      background-color: $bgColor;
 }
 
-.full-width{
+.mb-16 {
+     margin-bottom: 16px;
+}
+
+.full-width {
      width: 100%;
 }
 
@@ -28,18 +32,42 @@ body {
 
 .mat-mdc-dialog-container .mdc-dialog__surface {
      border-radius: 16px !important;
- }
+}
 
- .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
      background-color: transparent !important;
      border-radius: 16px;
- }
+}
 
 
-  
+
 @mixin displayFlex($jc: center, $ai: center, $dir: row) {
      display: flex;
      flex-direction: $dir;
      justify-content: $jc;
      align-items: $ai;
- }
+}
+
+
+/* width */
+::-webkit-scrollbar {
+     width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+     background: $bgColor;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+     background: $fontColor;
+     border-radius: 5px;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+     background: $fontColor;
+     border-radius: 5px;
+}

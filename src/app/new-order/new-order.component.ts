@@ -42,6 +42,7 @@ export class NewOrderComponent {
       price: '',
       status: 'todo',
       amount: 0,
+      timeStamp: Date.now()
     };
 
 
@@ -62,14 +63,12 @@ export class NewOrderComponent {
 
 
   async saveOrder() {
+    this.isLoading = true;
     let currentUser = doc(this.firestore, "users", this.userId);    
     await updateDoc(currentUser, {
       orders: arrayUnion(this.order)
     });    
-  }
-
-
-  onNoClick(): void {
+    this.isLoading = false;
     this.closeDialog();
   }
 

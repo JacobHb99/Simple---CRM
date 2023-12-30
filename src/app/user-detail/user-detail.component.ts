@@ -9,6 +9,7 @@ import { ChangeUserInfoComponent } from '../change-user-info/change-user-info.co
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { NewOrderComponent } from '../new-order/new-order.component';
+import { UserOrderListComponent } from '../user-order-list/user-order-list.component';
 
 
 
@@ -17,7 +18,8 @@ import { NewOrderComponent } from '../new-order/new-order.component';
   standalone: true,
   imports: [
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    UserOrderListComponent
   ],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss'
@@ -25,9 +27,9 @@ import { NewOrderComponent } from '../new-order/new-order.component';
 export class UserDetailComponent {
   public user = new User;
   userId!: any;
-  date!: string;
   orderAmount: number = 0;
   total!: string;
+  orders!: object;;
 
 
   constructor(public dialog: MatDialog, private firestore: Firestore, private route: ActivatedRoute) {
@@ -53,7 +55,7 @@ export class UserDetailComponent {
       this.getTotal(doc.data());
       let user: any = doc.data();
       this.orderAmount = user.orders.length;
-      console.log(user.orders.length);
+      this.orders = user.orders;
       console.log("Current data: ", doc.data());
       this.user = new User(doc.data());      
   });
@@ -72,13 +74,12 @@ export class UserDetailComponent {
   }
 
 
-  getDate(user: any) {
-    let date = new Date(user.dateOfBirth);
+  getDate(timeStamp: any) {
+    let date = new Date(timeStamp);
     let day = date.getDate();
     let month = date.getMonth() + 1;
-    let year = date.getFullYear();    
-    let shownDate = `${day}.${month}.${year}`;
-    this.date = shownDate;
+    let year = date.getFullYear();
+    return `${day}.${month}.${year}`; 
   }
 
 

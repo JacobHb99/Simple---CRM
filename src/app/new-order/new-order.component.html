@@ -18,17 +18,17 @@
         <div class="price-container">
             <mat-form-field appearance="outline" color="accent">
                 <mat-label>Price</mat-label>
-                <input [disabled]="isLoading" matInput [(ngModel)]="priceToString" class="input" (change)="updatePrice()">
+                <input type="number" [disabled]="isLoading" matInput [(ngModel)]="priceToString" class="input" (change)="updatePrice()">
             </mat-form-field>
 
             <mat-form-field appearance="outline" color="accent">
                 <mat-label>Amount</mat-label>
-                <input [disabled]="isLoading" matInput [(ngModel)]="amountToString" class="input" (change)="updatePrice()">
+                <input type="number" [disabled]="isLoading" matInput [(ngModel)]="amountToString" class="input" (change)="updatePrice()">
             </mat-form-field>
         </div>
     </div>
     <div mat-dialog-actions>
-        <button [disabled]="isLoading" mat-button (click)="onNoClick()">No Thanks</button>
+        <button [disabled]="isLoading" mat-button (click)="closeDialog()">No Thanks</button>
         <button [disabled]="isLoading" mat-button cdkFocusInitial (click)="saveOrder()">Ok</button>
     </div>
     @if (isLoading) {

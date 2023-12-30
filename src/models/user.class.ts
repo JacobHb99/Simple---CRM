@@ -8,6 +8,7 @@ export class User {
     email!: string;
     idField!: string;
     orders!: any;
+    timeStamp!: number;
 
 
 
@@ -22,6 +23,7 @@ export class User {
         this.email = obj? obj.email : '';
         this.idField = obj? obj.idField : '';
         this.orders = [];
+        this.timeStamp = Date.now();
     }
 
 
@@ -35,7 +37,8 @@ export class User {
             city: this.city,
             email: this.email,
             idField: this.idField,
-            orders: []
+            orders: [],
+            timeStamp: Date.now()
         }
     }
 }

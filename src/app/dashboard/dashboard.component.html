@@ -1,4 +1,27 @@
-<section>
-    <h1>{{ userAmount }}</h1>
-    <div>User</div>
+<div class="dash-header">
+    <div class="dash-container">
+        <h2>{{ allUsers.length }}</h2>
+        <span>User</span>
+    </div>
+
+    <div class="dash-container">
+        <h2>{{ allOrders.length }}</h2>
+        <span>Orders</span>
+    </div>
+
+    <div class="dash-container">
+        <h2>{{ total }}€</h2>
+        <span>Total</span>
+    </div>
+</div>
+
+
+<section class="wrap-charts">
+    <div class="chart-container">
+        <canvas class="chart" #barChart id="totalsChart">{{ chart }}</canvas>
+    </div>
+    
+    <div class="chart-container">
+        <canvas class="chart" #datesChart id="datesChart">{{ chart }}</canvas>
+    </div>
 </section>

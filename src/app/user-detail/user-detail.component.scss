@@ -3,13 +3,13 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
 
 
 section{
-
+    padding-bottom: 16px;
 
 
     .add-user-btn {
         background-color: $secondColor;
         color: $fontColor;
-        position: absolute;
+        position: fixed;
         bottom: 56px;
         right: 56px;
         @include displayFlex(center, center);
@@ -86,10 +86,6 @@ section{
 
             .stat{
                 color: $bgColor;
-            }
-
-            .description{
-
             }
         }
     }

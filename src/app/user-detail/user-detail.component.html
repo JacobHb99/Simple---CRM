@@ -38,7 +38,14 @@
                 <div class="birth-container stat-container">
                     <div class="stat">Birthday:</div>
                     <div class="description">
-                        <span>{{ date }} </span>
+                        <span>{{ getDate(user.dateOfBirth) }} </span>
+                    </div>
+                </div>
+
+                <div class="meberSince-container stat-container">
+                    <div class="stat">Member since:</div>
+                    <div class="description">
+                        <span>{{ getDate(user.timeStamp) }}</span>
                     </div>
                 </div>
             </div>
@@ -64,6 +71,8 @@
             </mat-card-content>
           </mat-card>
     </div>
+
+    <app-user-order-list [orders]=orders></app-user-order-list>
 
     <button (click)="openOrderDialog()" mat-icon-button class="add-user-btn" matTooltip="Add new order"
         matTooltipPosition="above">
