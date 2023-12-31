@@ -1,0 +1,59 @@
+@import '../../styles.scss';
+$material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/';
+
+h1{
+    color: $secondColor;
+}
+
+button{
+    border-radius: 50%;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+
+    i{
+        color: $bgColor;
+        font-weight: 700;
+        background-color: $fontColor;
+
+
+
+    }
+    &:hover{
+        background-color: $secondColor;
+        color: $fontColor;
+
+        i{
+            background-color: $secondColor;
+            color: $fontColor;
+        }
+    }
+}
+
+.order-container{
+    @include displayFlex(space-between, center);
+    margin-bottom: 16px;
+    border: 2px solid $mainColor;
+    border-radius: 16px;
+    padding: 16px;
+    cursor: pointer;
+
+    &:hover{
+        border: 2px solid $secondColor;
+    }
+
+    .left{
+
+
+
+        .amount-container{
+            @include displayFlex(flex-start);
+            gap: 4px;
+        }
+    }
+
+    .text-container{
+        width: 35%;
+    }
+}
+

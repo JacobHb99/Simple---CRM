@@ -1,0 +1,45 @@
+<h1>Todo</h1>
+
+@for (order of allOrders; track $index) {
+    @if (order.status == "todo") {
+        <div class="order-container">
+            <div class="left">
+                <h2>{{ order.user }}</h2>
+    
+                <div class="amount-container">
+                    <h4>{{ order.amount }}x</h4>
+                    <h4>{{ order.title }}</h4>
+                </div>
+                <span>{{ order.description }}</span>
+            </div>
+    
+            <div class="right">
+                <button (click)="checkOrderAsDone(order, $index)">
+                    <i class="material-icons">check</i>
+                </button>
+            </div>
+        </div>
+    }
+}
+
+<h1>Done</h1>
+
+@for (order of allOrders; track $index) {
+    @if (order.status == "done") {
+        <div class="order-container">
+            <div class="left">
+                <h2>{{ order.user }}</h2>
+    
+                <div class="amount-container">
+                    <h4>{{ order.amount }}x</h4>
+                    <h4>{{ order.title }}</h4>
+                </div>
+                <span>{{ order.description }}</span>
+            </div>
+    
+            <div class="right">
+    
+            </div>
+        </div>
+    }
+}

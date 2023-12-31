@@ -43,8 +43,6 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
         border-radius: 16px;
         padding: 16px;
         margin-bottom: 16px;
-        width: calc(50% - 45px);
-        min-width: 200px;
 
         cursor: pointer;
 
@@ -53,5 +51,10 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
             border: 2px solid $secondColor;
         }
 
+
+        .chart {
+            width: calc(50% - 45px);
+            min-width: 200px;
+        }
     }
 }
