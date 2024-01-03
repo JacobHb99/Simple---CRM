@@ -10,6 +10,7 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { NewOrderComponent } from '../new-order/new-order.component';
 import { UserOrderListComponent } from '../user-order-list/user-order-list.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -17,6 +18,7 @@ import { UserOrderListComponent } from '../user-order-list/user-order-list.compo
   selector: 'app-user-detail',
   standalone: true,
   imports: [
+    MatTooltipModule,
     MatCardModule,
     MatButtonModule,
     UserOrderListComponent

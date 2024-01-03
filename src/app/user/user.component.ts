@@ -25,6 +25,7 @@ import { UserDetailComponent } from '../user-detail/user-detail.component';
     MatListModule,
     RouterLink,
     RouterLinkActive,
+    MatButtonModule,
     UserDetailComponent
   ],
   templateUrl: './user.component.html',

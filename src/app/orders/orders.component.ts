@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UserComponent } from '../user/user.component';
-import { Firestore, collection, onSnapshot, query } from '@angular/fire/firestore';
+import { Firestore, collection, onSnapshot, query, doc, updateDoc, arrayUnion } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class OrdersComponent {
   allUsers = Array();
   allOrders = Array();
+  isLoading = true;
 
 
 
@@ -43,7 +44,7 @@ export class OrdersComponent {
       const order = user.orders[i];
       order.user = `${user.firstName} ${user.lastName}`;
       this.allOrders.push(order);
-
+      
     }
     console.log(this.allOrders); 
   }

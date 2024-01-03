@@ -2,24 +2,28 @@
 $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/';
 
 
-section {
+section{
 
-    mat-list-item{
+    .list-item{
         border: 2px solid $mainColor;
         border-radius: 16px;
         cursor: pointer;
         margin-bottom: 16px;
-        @include displayFlex();
-
-        span{
-            width: fit-content;
-        }
+        @include displayFlex(space-between);
+        flex-wrap: wrap;
+        row-gap: 16px;
+        padding: 16px;
+        cursor: pointer;
 
         &:hover{
             border: 2px solid $secondColor;
         }
-    }
 
+
+        .date-container {
+            @include displayFlex(center, center, column);
+        }
+    }
 
     .add-user-btn {
         background-color: $secondColor;
@@ -27,10 +31,9 @@ section {
         position: absolute;
         bottom: 56px;
         right: 56px;
+        border-radius: 50%;
         @include displayFlex(center, center);
         --mdc-icon-button-state-layer-size: 70px;
+        cursor: pointer;  
     }
 }
-
-
-

@@ -38,11 +38,15 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
     gap: 16px;
     flex-wrap: wrap;
 
+
     .chart-container {
         border: 2px solid $mainColor;
         border-radius: 16px;
         padding: 16px;
         margin-bottom: 16px;
+        width: calc(50% - 46px);
+
+
 
         cursor: pointer;
 
@@ -53,8 +57,10 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
 
 
         .chart {
-            width: calc(50% - 45px);
+            width: calc(50% - 46px);
             min-width: 200px;
+            min-height: 200px;
+            height: 40vh;
         }
     }
 }

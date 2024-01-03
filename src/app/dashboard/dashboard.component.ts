@@ -58,8 +58,6 @@ export class DashboardComponent {
       this.getOrdersforToday();
       this.createChart("totalsChart", 'bar', this.userChartData, 'Total', 'white');
       this.createChart("datesChart", 'line', this.dateChartData, 'Dates', 'blue');
-
-
     });
   }
 

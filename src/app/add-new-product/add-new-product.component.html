@@ -1,0 +1,38 @@
+<section>
+    <h1 mat-dialog-title>New product</h1>
+    <div mat-dialog-content>
+        <p>What's the name of the product?</p>
+
+        <div class="name-container">
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label>Name of the product</mat-label>
+                <input [disabled]="isLoading" matInput [(ngModel)]="product.title" class="input">
+            </mat-form-field>
+        </div>
+
+        <div class="description-container">
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label>Description</mat-label>
+                <textarea [disabled]="isLoading" matInput [(ngModel)]="product.description" class="input"></textarea>
+            </mat-form-field>
+        </div>
+
+        <div class="price-container">
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label>Price</mat-label>
+                <input type="number" [disabled]="isLoading" matInput [(ngModel)]="product.price" class="input">
+            </mat-form-field>
+
+        </div>
+    </div>
+
+    <div mat-dialog-actions>
+        <button [disabled]="isLoading" mat-button (click)="closeDialog()">Cancel</button>
+        <button [disabled]="isLoading" mat-button cdkFocusInitial (click)="saveProduct()">Ok</button>
+    </div>
+
+    @if (isLoading) {
+    <mat-progress-bar class="progress-bar" mode="indeterminate" color="warn"></mat-progress-bar>
+    }
+</section>
+

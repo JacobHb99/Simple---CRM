@@ -49,6 +49,27 @@ body {
 }
 
 
+.mdc-list-item__primary-text {
+     color: $fontColor;
+ }
+ 
+
+ .mdc-list-item__secondary-text {
+     color: $fontColor;
+ 
+ }
+ 
+
+ .mdc-list-item:hover .mdc-list-item__primary-text {
+     color: $fontColor;
+ }
+ 
+ 
+ .mdc-list-item:hover .mdc-list-item__secondary-text {
+     color: $fontColor;
+ }
+
+
 /* width */
 ::-webkit-scrollbar {
      width: 10px;

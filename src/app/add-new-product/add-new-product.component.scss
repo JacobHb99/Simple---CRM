@@ -5,6 +5,7 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
 section{
     background-color: $mainColor;
     border-radius: 16px;
+    border: 2px solid $fontColor;
     position: relative;
 
 
@@ -21,8 +22,8 @@ section{
     }
 
     .name-container, 
-    .address-container,
-    .zip-container{
+    .description-container,
+    .price-container{
         @include displayFlex();
         gap: 16px;
     }
@@ -40,6 +41,6 @@ section{
     color: $fontColor;
 }
 
-.amount-field{
-    width: 80px;
+textarea {
+    resize: none;
 }

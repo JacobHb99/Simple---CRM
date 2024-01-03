@@ -1,0 +1,26 @@
+<section>
+    @for (product of allProducts; track product.id) {
+    <div class="list-item">
+        <div class="product-info">
+            <h2 matListItemTitle>{{ product.title }}</h2>
+            <span matListItemLine>{{ product.description }}</span>
+        </div>
+
+        <div class="date-container">
+            <span>On offer since:</span>
+            <span>{{ getDate(product.timeStamp) }}</span>
+        </div>
+
+        <div class="price-container">
+            <span matListItemLine>{{ addDecimalNumbers(product.price) }}€</span>
+        </div>
+    </div>
+    }
+
+
+
+    <button (click)="openAddUserDialog()" mat-icon-button class="add-user-btn" matTooltip="Add new product"
+        matTooltipPosition="above">
+        <i class="material-icons">post_add</i>
+    </button>
+</section>
