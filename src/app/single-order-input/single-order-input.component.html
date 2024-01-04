@@ -1,0 +1,11 @@
+<mat-form-field>
+    <mat-label>Selected product</mat-label>
+    <mat-select (load)="createSingleOrderTask()" [(ngModel)]="selectedValues" name="product">
+        @for (product of allProducts; track product) {
+        <mat-option (click)="createSingleOrderTask()" [value]="product">{{product.title}}</mat-option>
+        }
+    </mat-select>
+</mat-form-field>
+<mat-form-field class="amount-field">
+    <input min="1" type="number" (change)="createSingleOrderTask()" [(ngModel)]="amount" [disabled]="isLoading" matInput class="input">
+</mat-form-field>

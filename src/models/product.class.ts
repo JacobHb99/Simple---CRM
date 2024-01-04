@@ -5,6 +5,8 @@ export class Product {
     imagePath!: string;
     timeStamp!: number;
     idField!: string;
+    amount!: number;
+    orderId!: number;
 
 
     constructor(obj?: any) {
@@ -14,6 +16,9 @@ export class Product {
         this.imagePath = obj? obj.imagePath : '';
         this.timeStamp = obj? obj.timeStamp : '';
         this.idField = obj? obj.idField : '';
+        this.amount = obj? obj.amount : 0;
+        this.orderId = obj? obj.orderId : 0;
+
     }
 
 
@@ -24,7 +29,9 @@ export class Product {
             description: this.description,
             imagePath: this.imagePath,
             idField: this.idField,
-            timeStamp: Date.now()
+            timeStamp: Date.now(),
+            amount: this.amount,
+            orderId: this.orderId
         }
     }
 }

@@ -1,22 +1,27 @@
 @for (order of orders; track $index) {
-    <div class="order-container">
-        <div>
-            {{ order.amount }}x
-        </div>
+    @if (order.orderId === $index) {
+            <div class="order-container">
+                <div>{{ order.orderId }}</div>
+                <div>
+                    {{ order.amount }}x
+                </div>
+        
+                <div class="text-container">
+                    <h2>{{ order.title }}</h2>
+                    <p>{{ order.description }}</p>
+                </div>
+        
+                <div>
+                    <span class="price">{{ order.price }}€</span>
+                </div>
+        
+                <div>
+                    <span class="total">{{ order.price * order.amount }}€</span>
+                </div>
+        
+                <span class="date">{{ getOrderDate(order.timeStamp) }}</span>
+            </div>
+        
 
-        <div class="text-container">
-            <h2>{{ order.title }}</h2>
-            <p>{{ order.description }}</p>
-        </div>
-
-        <div>
-            <span class="price">{{ order.price / order.amount }}€</span>
-        </div>
-
-        <div>
-            <span class="total">{{ order.price }}€</span>
-        </div>
-
-        <span class="date">{{ getOrderDate(order.timeStamp) }}</span>
-    </div>
+    }
 }

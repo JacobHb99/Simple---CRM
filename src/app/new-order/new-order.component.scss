@@ -28,6 +28,14 @@ section{
     }
 }
 
+.add-input-btn{
+    border: 2px solid $fontColor;
+    border-radius: 16px;
+    width: 25px;
+    height: 25px;
+    @include displayFlex();
+}
+
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: transparent !important;
 }
@@ -42,4 +50,8 @@ section{
 
 .amount-field{
     width: 80px;
+}
+
+#inputs{
+    @include displayFlex(center, center, column);
 }

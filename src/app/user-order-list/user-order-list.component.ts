@@ -12,19 +12,19 @@ export class UserOrderListComponent {
   dates = Array();
 
   constructor() {
-
   }
 
   ngOnInit() {
+
   }
 
 
-  getOrderDate(timeStamp :number) {
-      let date = new Date(timeStamp);
-      let day = date.getDate();
-      let month = date.getMonth() + 1;
-      let year = date.getFullYear();
-      return `${day}.${month}.${year}`;    
+  getOrderDate(timeStamp: number) {
+    let date = new Date(timeStamp);
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    return `${day}.${month}.${year}`;
   }
 
 }

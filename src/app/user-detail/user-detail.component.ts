@@ -31,7 +31,7 @@ export class UserDetailComponent {
   userId!: any;
   orderAmount: number = 0;
   total!: string;
-  orders!: object;;
+  orders!: any;
 
 
   constructor(public dialog: MatDialog, private firestore: Firestore, private route: ActivatedRoute) {
@@ -57,10 +57,21 @@ export class UserDetailComponent {
       this.getTotal(doc.data());
       let user: any = doc.data();
       this.orderAmount = user.orders.length;
-      this.orders = user.orders;
+      this.orders = user.orders;      
       console.log("Current data: ", doc.data());
-      this.user = new User(doc.data());      
+      this.user = new User(doc.data());  
   });
+  }
+
+
+  sortOrders() {
+    let sortedOrders: any;
+    console.log(this.orders);
+    for (let i = 0; i < this.orders.length; i++) {
+      const order = this.orders[i];
+      let id = order.orderId;
+    }
+    console.log(sortedOrders);
   }
 
 
@@ -88,7 +99,7 @@ export class UserDetailComponent {
   openChangeUserDialog(): void {
     const dialogRef = this.dialog.open(ChangeUserInfoComponent, { panelClass: 'custom-container' });
     dialogRef.componentInstance.user = new User(this.user.toJson());
-    dialogRef.componentInstance.userId = this.userId;
+    dialogRef.componentInstance.userId = this.userId;    
   }
 
 
@@ -96,5 +107,6 @@ export class UserDetailComponent {
     const dialogRef = this.dialog.open(NewOrderComponent, { panelClass: 'custom-container' });
     dialogRef.componentInstance.user = new User(this.user.toJson());
     dialogRef.componentInstance.userId = this.userId;
+    dialogRef.componentInstance.storedOrders = this.orders;
   }
 }

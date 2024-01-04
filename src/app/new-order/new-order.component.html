@@ -2,18 +2,16 @@
     <h1 mat-dialog-title>New Order</h1>
     <div mat-dialog-content>
         <p>What's the name of the order?</p>
-        <mat-form-field>
-            <mat-label>Selected product</mat-label>
-            <mat-select [(ngModel)]="selectedValue" name="product">
-                @for (product of allProducts; track product) {
-                <mat-option [value]="product">{{product.title}}</mat-option>
-                }
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field class="amount-field">
-            <input min="1" type="number" [disabled]="isLoading" matInput class="input">
-        </mat-form-field>
+        <div id="inputs">
+            @for (input of inputs; track $index) {
+                <app-single-order-input (singleProduct)="addOrderTask($event, $index)" [allProducts]="allProducts"></app-single-order-input>
+            }
 
+        </div>
+
+        <div class="add-input-btn" (click)="addInputField()">
+            <i class="material-icons">add</i>
+        </div>
     </div>
     <div mat-dialog-actions>
         <button [disabled]="isLoading" mat-button (click)="closeDialog()">No Thanks</button>
@@ -22,5 +20,4 @@
     @if (isLoading) {
     <mat-progress-bar class="progress-bar" mode="indeterminate" color="warn"></mat-progress-bar>
     }
-
 </section>
