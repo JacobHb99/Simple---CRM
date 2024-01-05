@@ -69,26 +69,32 @@ body {
      color: $fontColor;
  }
 
+ mat-label{
+     color: $fontColor !important;
+ }
+
 
 /* width */
 ::-webkit-scrollbar {
-     width: 10px;
+     width: 8px;
+     border-radius: 4px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
      background: $bgColor;
+     border-radius: 4px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
      background: $fontColor;
-     border-radius: 5px;
+     border-radius: 4px;
 
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
      background: $fontColor;
-     border-radius: 5px;
+     border-radius: 4px;
 }

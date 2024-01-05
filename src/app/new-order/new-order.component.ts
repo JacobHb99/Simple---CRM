@@ -91,24 +91,36 @@ export class NewOrderComponent {
   async saveOrder() {
     this.filterOrder();
     this.storedOrders.push(this.currentOrder);
-    console.log(this.storedOrders);
-
     this.isLoading = true;
+    this.loopStoredOrders();
+  }
+
+
+  loopStoredOrders() {
     let currentUser = doc(this.firestore, "users", this.userId);
     console.log(currentUser);
     for (let i = 0; i < this.storedOrders.length; i++) {
       const order = this.storedOrders[i];
-
-      for (let k = 0; k < order.length; k++) {
-        const element = order[k];
-        element.orderId = i;
-        await updateDoc(currentUser, {
-          orders: arrayUnion(element)
-        });
-      }
+      this.updateUserOrdersDoc(order, currentUser, i);
     }
     this.isLoading = false;
     this.closeDialog();
+  }
+
+
+  async updateUserOrdersDoc(order: any, currentUser: any, i: number) {
+    for (let k = 0; k < order.length; k++) {
+      const element = order[k];
+      element.orderId = i;
+      element.orderTimeStamp = Date.now();
+      element.status = false;
+      console.log(element.todo);
+      
+
+      await updateDoc(currentUser, {
+        orders: arrayUnion(element)
+      });
+    }
   }
 
 

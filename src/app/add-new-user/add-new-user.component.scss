@@ -6,6 +6,7 @@ section{
     background-color: $mainColor;
     border-radius: 16px;
     position: relative;
+    border: 2px solid $fontColor;
 
 
     .progress-bar{
@@ -40,10 +41,6 @@ section{
     color: $fontColor;
 }
 
-.mdc-text-field--outlined:not(.mdc-text-field--disabled), .mdc-floating-label, .mdc-text-field--outlined:not(.mdc-text-field--disabled), .mdc-floating-label--float-above {
-    color: red;
-}
-
-.mdc-text-field--outlined:not(.mdc-text-field--disabled){
-    color: red;
+mat-mdc-button-touch-target {
+    color:  $fontColor !important;
 }

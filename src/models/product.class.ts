@@ -7,6 +7,7 @@ export class Product {
     idField!: string;
     amount!: number;
     orderId!: number;
+    orderTimeStamp!: number;
 
 
     constructor(obj?: any) {
@@ -18,7 +19,7 @@ export class Product {
         this.idField = obj? obj.idField : '';
         this.amount = obj? obj.amount : 0;
         this.orderId = obj? obj.orderId : 0;
-
+        this.orderTimeStamp = obj? obj.orderTimeStamp : '';
     }
 
 
@@ -31,7 +32,8 @@ export class Product {
             idField: this.idField,
             timeStamp: Date.now(),
             amount: this.amount,
-            orderId: this.orderId
+            orderId: this.orderId,
+            orderTimeStamp: this.orderTimeStamp
         }
     }
 }

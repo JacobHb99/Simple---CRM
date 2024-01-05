@@ -1,7 +1,5 @@
 @for (order of orders; track $index) {
-    @if (order.orderId === $index) {
             <div class="order-container">
-                <div>{{ order.orderId }}</div>
                 <div>
                     {{ order.amount }}x
                 </div>
@@ -21,7 +19,4 @@
         
                 <span class="date">{{ getOrderDate(order.timeStamp) }}</span>
             </div>
-        
-
-    }
 }

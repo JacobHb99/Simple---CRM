@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UserComponent } from '../user/user.component';
-import { Firestore, collection, onSnapshot, query, doc, updateDoc, arrayUnion } from '@angular/fire/firestore';
+import { Firestore, collection, onSnapshot, query, doc, updateDoc, arrayUnion, arrayRemove } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -33,18 +33,18 @@ export class OrdersComponent {
       this.allUsers = [];
       this.allOrders = [];
       snapshot.forEach((doc) => {
-        this.pushOrders(doc.data());
+        this.pushOrders(doc.data(), doc.id);
       });
     });
   }
 
 
-  pushOrders(user: any) {
+  pushOrders(user: any, id: string) {
     for (let i = 0; i < user.orders.length; i++) {
       const order = user.orders[i];
       order.user = `${user.firstName} ${user.lastName}`;
+      order.userId = id;
       this.allOrders.push(order);
-      
     }
     console.log(this.allOrders); 
   }
@@ -60,7 +60,31 @@ export class OrdersComponent {
 
 
 checkOrderAsDone(order: any, $index: any) {
-  this.allOrders[$index].status = 'done';  
+  let orderBefore = order;
+  order.status = !order.status;
+  this.updateStatus(order, orderBefore);
 }
 
+
+async updateStatus(order: any, orderBefore: any) {
+  let currentUser = doc(this.firestore, "users", order.userId);
+
+  await updateDoc(currentUser, {
+    orders: arrayRemove(orderBefore)
+  });
+
+  await updateDoc(currentUser, {
+    orders: arrayUnion(order)
+  });
+
+}
+
+
+getDate(timeStamp: any) {
+  let date = new Date(timeStamp);
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+  return `${day}.${month}.${year}`;
+}
 }

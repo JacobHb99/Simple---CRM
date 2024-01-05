@@ -1,7 +1,7 @@
 <h1>Todo</h1>
 
 @for (order of allOrders; track $index) {
-    @if (order.status == "todo") {
+    @if (!order.status) {
         <div class="order-container">
             <div class="left">
                 <h2>{{ order.user }}</h2>
@@ -25,7 +25,7 @@
 <h1>Done</h1>
 
 @for (order of allOrders; track $index) {
-    @if (order.status == "done") {
+    @if (order.status) {
         <div class="order-container">
             <div class="left">
                 <h2>{{ order.user }}</h2>

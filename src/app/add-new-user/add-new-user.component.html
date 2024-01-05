@@ -27,6 +27,18 @@
             </mat-form-field>
         </div>
 
+        <div class="zip-container">
+            <mat-form-field appearance="outline" color="accent" class="full-width">
+                <mat-label>e-mail</mat-label>
+                <input [disabled]="isLoading" matInput [(ngModel)]="user.email" class="input">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label>Zipcode</mat-label>
+                <input [disabled]="isLoading" matInput [(ngModel)]="user.zipCode" class="input">
+            </mat-form-field>
+        </div>
+
         <div class="date-container">
             <mat-form-field appearance="outline" color="accent" class="full-width">
                 <mat-label>MM/DD/YYYY</mat-label>
@@ -35,19 +47,8 @@
                 <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
         </div>
-
-        <div class="zip-container">
-            <mat-form-field appearance="outline" color="accent">
-                <mat-label>e-mail</mat-label>
-                <input [disabled]="isLoading" matInput [(ngModel)]="user.email" class="input">
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" color="accent" class="full-width">
-                <mat-label>Zipcode</mat-label>
-                <input [disabled]="isLoading" matInput [(ngModel)]="user.zipCode" class="input">
-            </mat-form-field>
-        </div>
     </div>
+
 
 
     <div mat-dialog-actions>
