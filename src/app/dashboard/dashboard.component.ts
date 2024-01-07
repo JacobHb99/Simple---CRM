@@ -95,15 +95,12 @@ export class DashboardComponent {
 
   getOrdersforToday() {
     let total = 0;
-
     for (let i = 0; i < this.allOrders.length; i++) {
       const order = this.allOrders[i];
       let date = this.getDate(order.timeStamp);
       this.allDates.push(date);
-
       this.createDateData();
-
-      total += Number(order.price);
+      total += order.price * order.amount;
       this.total = total.toFixed(2);
     }
   }

@@ -18,6 +18,8 @@ section{
     
     .img-container{
         @include displayFlex(flex-start, flex-end);
+        flex-wrap: wrap;
+        row-gap: 24px;
         border-top-right-radius: 16px;
         border-top-left-radius: 16px;
         min-height: 30vh;

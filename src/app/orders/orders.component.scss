@@ -52,6 +52,13 @@ button{
         }
     }
 
+    .right{
+
+        button{
+            @include displayFlex();
+        }
+    }
+
     .text-container{
         width: 35%;
     }

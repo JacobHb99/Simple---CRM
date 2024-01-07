@@ -64,23 +64,12 @@ export class UserDetailComponent {
   }
 
 
-  sortOrders() {
-    let sortedOrders: any;
-    console.log(this.orders);
-    for (let i = 0; i < this.orders.length; i++) {
-      const order = this.orders[i];
-      let id = order.orderId;
-    }
-    console.log(sortedOrders);
-  }
-
-
   getTotal(user: any) {
     let price = 0;
 
     for (let i = 0; i < user.orders.length; i++) {
       const order = user.orders[i];
-      let orderPrice = Number(order.price);
+      let orderPrice = order.price * order.amount;
         price += orderPrice;
     }
     this.total = price.toFixed(2);    
