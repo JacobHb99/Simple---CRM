@@ -33,7 +33,6 @@ export class SingleOrderInputComponent {
   }
 
   createSingleOrderTask() {
-    console.log(this.selectedValues);
     if (this.selectedValues) {
       this.selectedValues.amount = this.amount;
     }

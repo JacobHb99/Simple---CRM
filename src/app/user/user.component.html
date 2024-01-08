@@ -1,6 +1,6 @@
 <section>
     <mat-list>
-        @for (user of allUsers; track user.id) {
+        @for (user of userService.allUsers; track user.id) {
             <mat-list-item [routerLink]="[user.idField]">
                 <span matListItemTitle>{{ user.firstName }} {{ user.lastName }}</span>
                 <span matListItemLine>{{ user.city }}</span>

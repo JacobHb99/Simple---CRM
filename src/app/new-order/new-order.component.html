@@ -6,13 +6,15 @@
             @for (input of inputs; track $index) {
                 <app-single-order-input (singleProduct)="addOrderTask($event, $index)" [allProducts]="allProducts"></app-single-order-input>
             }
-
         </div>
 
-        <div class="add-input-btn" (click)="addInputField()">
-            <i class="material-icons">add</i>
+        <div class="add-btn-container">
+            <button class="add-input-btn" [disabled]="isLoading" mat-icon-button (click)="addInputField()" matTooltip="Add new input">
+                <i class="material-icons">add</i>
+            </button>
         </div>
     </div>
+
     <div mat-dialog-actions>
         <button [disabled]="isLoading" mat-button (click)="closeDialog()">No Thanks</button>
         <button [disabled]="isLoading" mat-button cdkFocusInitial (click)="saveOrder()">Ok</button>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UserComponent } from '../user/user.component';
 import { User } from '../../models/user.class';
-import { Firestore, collection, doc, getDoc, getDocFromServer, onSnapshot } from '@angular/fire/firestore';
+import { DocumentData, Firestore, SnapshotOptions, collection, doc, getDoc, getDocFromServer, onSnapshot } from '@angular/fire/firestore';
 import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { AddNewUserComponent } from '../add-new-user/add-new-user.component';
@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { NewOrderComponent } from '../new-order/new-order.component';
 import { UserOrderListComponent } from '../user-order-list/user-order-list.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { FirebaseServiceService } from '../firebase-service.service';
+
 
 
 
@@ -34,7 +36,7 @@ export class UserDetailComponent {
   orders!: any;
 
 
-  constructor(public dialog: MatDialog, private firestore: Firestore, private route: ActivatedRoute) {
+  constructor(public dialog: MatDialog, public userService: FirebaseServiceService, private route: ActivatedRoute) {
 
   }
 
@@ -52,36 +54,28 @@ export class UserDetailComponent {
 
 
   async getUser() {
-    const unsub = onSnapshot(doc(this.firestore, "users", this.userId), (doc) => {
-      this.getDate(doc.data());
-      this.getTotal(doc.data());
+    const unsub = onSnapshot(this.userService.getSingleDoc(this.userId), (doc) => {
       let user: any = doc.data();
-      this.orderAmount = user.orders.length;
-      this.orders = user.orders;      
-      console.log("Current data: ", doc.data());
-      this.user = new User(doc.data());  
+      if (user != undefined) {
+        this.orderAmount = user.orders.length;
+        this.orders = user.orders;   
+        console.log(this.orders);
+        this.getTotal(user);
+        console.log("Current data: ", doc.data());
+        this.user = new User(doc.data()); 
+      } 
   });
   }
 
 
   getTotal(user: any) {
     let price = 0;
-
     for (let i = 0; i < user.orders.length; i++) {
       const order = user.orders[i];
       let orderPrice = order.price * order.amount;
         price += orderPrice;
     }
     this.total = price.toFixed(2);    
-  }
-
-
-  getDate(timeStamp: any) {
-    let date = new Date(timeStamp);
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    return `${day}.${month}.${year}`; 
   }
 
 

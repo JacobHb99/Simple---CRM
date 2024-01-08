@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { Firestore, collection, onSnapshot, query, updateDoc } from '@angular/fire/firestore';
+import { FirebaseServiceService } from '../firebase-service.service';
 
 
 @Component({
@@ -26,35 +27,13 @@ import { Firestore, collection, onSnapshot, query, updateDoc } from '@angular/fi
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent {
-  allProducts = Array();
 
 
-
-  constructor(public dialog: MatDialog, private firestore: Firestore) { }
+  constructor(public dialog: MatDialog, public firebaseService: FirebaseServiceService) { }
 
 
   ngOnInit() {
-    this.getProducts();
-  }
-
-
-  async getProducts() {
-    const userCollection = collection(this.firestore, 'products');
-    const q = query(userCollection);
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      this.allProducts = [];
-      snapshot.forEach((doc) => {
-        this.setIdField(doc);
-      });
-    });
-  }
-
-
-  setIdField(data: any) {
-    let product = data.data();
-    product.idField = data.id;
-    this.allProducts.push(product);
-    console.log(this.allProducts);
+    this.firebaseService.getProducts();
   }
 
 
@@ -68,14 +47,5 @@ export class ProductsComponent {
     decimalPrice.toString();
     
     return decimalPrice.replace('.', ',');
-  }
-
-
-  getDate(timeStamp: any) {
-    let date = new Date(timeStamp);
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    return `${day}.${month}.${year}`;
   }
 }

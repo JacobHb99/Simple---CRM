@@ -1,13 +1,13 @@
 export class Product {
-    title!: string;
-    price!: string;
-    description!: string;
-    imagePath!: string;
-    timeStamp!: number;
-    idField!: string;
-    amount!: number;
-    orderId!: number;
-    orderTimeStamp!: number;
+    title: string;
+    price: string;
+    description: string;
+    imagePath: string;
+    timeStamp: number;
+    idField: string;
+    amount: number;
+    orderId: number;
+    orderTimeStamp: number;
 
 
     constructor(obj?: any) {

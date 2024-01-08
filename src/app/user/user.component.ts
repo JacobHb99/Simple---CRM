@@ -10,6 +10,7 @@ import { MatListModule } from '@angular/material/list';
 import { Firestore, collection, collectionData, addDoc, doc, getDocs, onSnapshot, query } from '@angular/fire/firestore';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { UserDetailComponent } from '../user-detail/user-detail.component';
+import { FirebaseServiceService } from '../firebase-service.service';
 
 
 
@@ -34,40 +35,19 @@ import { UserDetailComponent } from '../user-detail/user-detail.component';
 
 
 export class UserComponent {
-  user = new User;
   allUsers = Array();
-  userIds = Array();
-  cities = Array();
 
-  constructor(public dialog: MatDialog, private firestore: Firestore) {
+  constructor(public dialog: MatDialog, public userService: FirebaseServiceService ,private firestore: Firestore) {
+    
   }
 
 
   ngOnInit() {
-    this.getUsers();
-  }
-
-
-  async getUsers() {
-    const userCollection = collection(this.firestore, 'users');
-    const q = query(userCollection);
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      this.allUsers = [];
-      snapshot.forEach((doc) => {
-        this.addUserId(doc.data(), doc.id); 
-        console.log(this.allUsers);
-    });
-    });   
+    this.userService.getUsers();
   }
 
 
   openAddUserDialog(): void {
     const dialogRef = this.dialog.open(AddNewUserComponent, { panelClass: 'custom-container' });
-  }
-
-  
-  addUserId(user: any, id: any) {
-      user.idField = id;
-      this.allUsers.push(user); 
   }
 }

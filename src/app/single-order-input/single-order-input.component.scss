@@ -2,10 +2,25 @@
 $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/';
 
 
+section{
+@include displayFlex();
+flex-wrap: wrap;
+gap: 16px;
+}
+
 .amount-field{
     width: 80px;
 }
 
 .form-field{
     color: $fontColor;
+}
+
+.selectField {
+    background-color: $bgColor !important;
+    border-bottom: 2px solid $fontColor;
+    cursor: pointer;
+    &:hover{
+        border-bottom: 2px solid $secondColor;
+    }
 }
