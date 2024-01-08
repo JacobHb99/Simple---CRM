@@ -33,10 +33,14 @@ export class UserDetailComponent {
   userId!: any;
   orderAmount: number = 0;
   total!: string;
+  latestOrderStamp = '0';
   orders!: any;
 
 
-  constructor(public dialog: MatDialog, public userService: FirebaseServiceService, private route: ActivatedRoute) {
+  constructor(
+    public dialog: MatDialog, 
+    public firebaseService: FirebaseServiceService, 
+    private route: ActivatedRoute) {
 
   }
 
@@ -54,17 +58,28 @@ export class UserDetailComponent {
 
 
   async getUser() {
-    const unsub = onSnapshot(this.userService.getSingleDoc(this.userId), (doc) => {
+    const unsub = onSnapshot(this.firebaseService.getSingleDoc(this.userId), (doc) => {
       let user: any = doc.data();
       if (user != undefined) {
         this.orderAmount = user.orders.length;
         this.orders = user.orders;   
-        console.log(this.orders);
         this.getTotal(user);
-        console.log("Current data: ", doc.data());
+        this.checkLatestOrder();
         this.user = new User(doc.data()); 
       } 
   });
+  }
+
+
+  checkLatestOrder() {
+    for (let i = 0; i < this.orders.length; i++) {
+      const order = this.orders[i];
+        let timeStampNumber = Number(order.orderTimeStamp);
+        let latestStampNumber = Number(this.latestOrderStamp)
+        if (timeStampNumber > latestStampNumber) {
+          this.latestOrderStamp = order.orderTimeStamp;
+        }
+    }
   }
 
 

@@ -88,12 +88,20 @@ section{
 
             .stat{
                 color: $bgColor;
+                font-size: 16px;
+                font-weight: 400;
+            }
+
+            .description{
+                font-size: 16px;
+                font-weight: 400;
             }
         }
     }
 
     .info-details-overview-container {
         @include displayFlex(flex-start);
+        flex-wrap: wrap;
         gap: 16px;
         margin-top: 16px;
 

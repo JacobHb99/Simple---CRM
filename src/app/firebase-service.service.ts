@@ -75,8 +75,8 @@ getSingleDoc(id: string) {
 
 getDate(timeStamp: any) {
   let date = new Date(timeStamp);
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
+  let day = date.getDate().toString().padStart(2, '0');
+  let month = (date.getMonth() + 1).toString().padStart(2, '0');
   let year = date.getFullYear();
   return `${day}.${month}.${year}`; 
 }

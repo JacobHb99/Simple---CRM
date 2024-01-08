@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { UserComponent } from '../user/user.component';
-import { Firestore, collection, onSnapshot, query, doc, updateDoc, arrayUnion, arrayRemove } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { FirebaseServiceService } from '../firebase-service.service';
+import { arrayRemove, arrayUnion, updateDoc } from '@firebase/firestore';
 
 @Component({
   selector: 'app-orders',
@@ -12,15 +11,11 @@ import { FirebaseServiceService } from '../firebase-service.service';
   styleUrl: './orders.component.scss'
 })
 export class OrdersComponent {
-  allUsers = Array();
-  allOrders = Array();
   isLoading = true;
 
 
+  constructor(public dialog: MatDialog, public firebaseService: FirebaseServiceService) {}
 
-
-  constructor(public dialog: MatDialog, public firebaseService: FirebaseServiceService) {
-  }
 
   ngOnInit() {
     this.firebaseService.getOrders();
@@ -28,33 +23,27 @@ export class OrdersComponent {
 
 
   checkOrderAsDone(order: any, $index: any) {
-    let orderBefore = order;
-    order.status = !order.status;
-    this.updateStatus(order, orderBefore);
+    this.updateStatus(order);
   }
 
 
-  async updateStatus(order: any, orderBefore: any) {
-    let currentUser = this.firebaseService.getSingleDoc(order.orderId);
+  async updateStatus(order: any) {
+    let currentUser = this.firebaseService.getSingleDoc(order.userId);
+    console.log('order', order);
+    debugger;
+    await updateDoc(currentUser, {
+      orders: arrayRemove(order)
+    });
+    
 
 
+
+    order.status = !order.status;
+    console.log('order', order);
 
     await updateDoc(currentUser, {
       orders: arrayUnion(order)
     });
-
-    await updateDoc(currentUser, {
-      orders: arrayRemove(orderBefore)
-    });
     
-  }
-
-
-  getDate(timeStamp: any) {
-    let date = new Date(timeStamp);
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    return `${day}.${month}.${year}`;
   }
 }

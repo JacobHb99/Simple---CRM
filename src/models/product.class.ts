@@ -8,6 +8,8 @@ export class Product {
     amount: number;
     orderId: number;
     orderTimeStamp: number;
+    user!: any;
+    userId!: string;
 
 
     constructor(obj?: any) {
@@ -20,6 +22,8 @@ export class Product {
         this.amount = obj? obj.amount : 0;
         this.orderId = obj? obj.orderId : 0;
         this.orderTimeStamp = obj? obj.orderTimeStamp : '';
+        this.user = obj? obj.user : '';
+        this.userId = obj? obj.userId : '';
     }
 
 
@@ -33,7 +37,9 @@ export class Product {
             timeStamp: Date.now(),
             amount: this.amount,
             orderId: this.orderId,
-            orderTimeStamp: this.orderTimeStamp
+            orderTimeStamp: this.orderTimeStamp,
+            user: this.user,
+            userId: this.userId
         }
     }
 }

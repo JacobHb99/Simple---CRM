@@ -2,7 +2,20 @@
 $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/';
 
 
-.order-container{
+h1 {
+    color: $secondColor;
+    font-size: 32px;
+    font-weight: 600;
+    margin-top: 16px;
+}
+
+.line{
+    height: 2px;
+    width: 100%;
+    background-color: $secondColor;
+}
+
+.order-container {
     @include displayFlex(space-between, center);
     border: 2px solid $mainColor;
     border-radius: 16px;
@@ -12,12 +25,12 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
 
 
 
-    .text-container{
+    .text-container {
         width: 35%;
     }
 }
 
-.price{
+.price {
     font-size: 14px;
     font-weight: 400;
     min-width: 100px;
@@ -29,7 +42,7 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
     font-weight: 700;
 }
 
-.date{
+.date {
     position: absolute;
     bottom: 16px;
     right: 16px;

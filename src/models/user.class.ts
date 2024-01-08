@@ -23,7 +23,7 @@ export class User {
         this.email = obj? obj.email : '';
         this.idField = obj? obj.idField : '';
         this.orders = [];
-        this.timeStamp = Date.now();
+        this.timeStamp = obj? obj.timeStamp : '';
     }
 
 

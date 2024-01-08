@@ -5,7 +5,7 @@
                 <button mat-icon-button (click)="openChangeUserDialog()">
                     <i class="material-icons">mode</i>
                 </button>
-                <img class="user-img" src="../../assets/images/m.png" alt="">
+                <img class="user-img" src="./assets/images/m.png" alt="">
 
                 <div class="first-info-container">
                     <div class="name-container">
@@ -38,14 +38,14 @@
                 <div class="birth-container stat-container">
                     <div class="stat">Birthday:</div>
                     <div class="description">
-                        <span>{{ userService.getDate(user.dateOfBirth) }} </span>
+                        <span>{{ firebaseService.getDate(user.dateOfBirth) }} </span>
                     </div>
                 </div>
 
                 <div class="meberSince-container stat-container">
                     <div class="stat">Member since:</div>
                     <div class="description">
-                        <span>{{ userService.getDate(user.timeStamp) }}</span>
+                        <span>{{ firebaseService.getDate(user.timeStamp) }}</span>
                     </div>
                 </div>
             </div>
@@ -67,6 +67,15 @@
                 <div class="text-container">
                     <h1>{{ total }}€</h1>
                     <span>Total</span>
+                </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="first-info-card">
+            <mat-card-content>
+                <div class="text-container">
+                    <h1>{{ firebaseService.getDate(latestOrderStamp) }}</h1>
+                    <span>Last Order</span>
                 </div>
             </mat-card-content>
           </mat-card>

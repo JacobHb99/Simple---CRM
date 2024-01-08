@@ -1,4 +1,6 @@
 <h1>Todo</h1>
+<div class="line"></div>
+
 
 @for (order of firebaseService.allOrders; track $index) {
     @if (!order.status) {
@@ -23,6 +25,8 @@
 }
 
 <h1>Done</h1>
+<div class="line"></div>
+
 
 @for (order of firebaseService.allOrders; track $index) {
     @if (order.status) {
