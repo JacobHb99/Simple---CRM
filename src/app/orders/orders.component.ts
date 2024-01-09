@@ -30,7 +30,6 @@ export class OrdersComponent {
   async updateStatus(order: any) {
     let currentUser = this.firebaseService.getSingleDoc(order.userId);
     console.log('order', order);
-    debugger;
     this.deleteOldStatusOrder(currentUser, order);
     order.status = !order.status;
     console.log('order', order);
