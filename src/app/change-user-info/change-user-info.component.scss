@@ -51,3 +51,11 @@ section{
 .mdc-text-field--outlined:not(.mdc-text-field--disabled){
     color: red;
 }
+
+mat-label{
+    color: $fontColor !important;
+}
+
+h1{
+    color: $fontColor !important;
+}

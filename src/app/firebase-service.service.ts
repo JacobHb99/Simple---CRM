@@ -18,10 +18,9 @@ export class FirebaseServiceService {
     const unsubscribe = onSnapshot(q, (snapshot) => {
       this.allUsers = [];
       snapshot.forEach((doc) => {
-        this.addId(doc, this.allUsers); 
-        console.log('users', this.allUsers);
+        this.addId(doc, this.allUsers);
+      });
     });
-    });   
   }
 
 
@@ -57,27 +56,26 @@ export class FirebaseServiceService {
       order.userId = id;
       this.allOrders.push(order);
     }
-    console.log(this.allOrders); 
   }
 
 
   addId(doc: any, arr: any) {
     let object = doc.data();
     object.idField = doc.id;
-    arr.push(object); 
-}
+    arr.push(object);
+  }
 
 
-getSingleDoc(id: string) {
-  return doc(this.firestore, "users", id);
-}
+  getSingleDoc(id: string) {
+    return doc(this.firestore, "users", id);
+  }
 
 
-getDate(timeStamp: any) {
-  let date = new Date(timeStamp);
-  let day = date.getDate().toString().padStart(2, '0');
-  let month = (date.getMonth() + 1).toString().padStart(2, '0');
-  let year = date.getFullYear();
-  return `${day}.${month}.${year}`; 
-}
+  getDate(timeStamp: any) {
+    let date = new Date(timeStamp);
+    let day = date.getDate().toString().padStart(2, '0');
+    let month = (date.getMonth() + 1).toString().padStart(2, '0');
+    let year = date.getFullYear();
+    return `${day}.${month}.${year}`;
+  }
 }

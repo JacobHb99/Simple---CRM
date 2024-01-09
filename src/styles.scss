@@ -39,8 +39,6 @@ body {
      border-radius: 16px;
 }
 
-
-
 @mixin displayFlex($jc: center, $ai: center, $dir: row) {
      display: flex;
      flex-direction: $dir;

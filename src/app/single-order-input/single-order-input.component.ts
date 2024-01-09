@@ -24,7 +24,7 @@ export class SingleOrderInputComponent {
   @Input() isLoading: boolean = false;
   @Input() allProducts = Array();
   selectedValues!: any;
-  amount: number = 0;
+  amount: number = 1;
   @Output() singleProduct: any = new EventEmitter<any>();
 
 

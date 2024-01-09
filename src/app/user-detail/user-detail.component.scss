@@ -123,8 +123,10 @@ section{
 .first-info-card {
     background-color: $fontColor;
     color: $bgColor;
-    padding: 24px;  
+    height: 100px;
+    padding: 16px;
     border-radius: 16px;
+    @include displayFlex(center, center, column);
   
 
     h1 {

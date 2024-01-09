@@ -19,6 +19,10 @@ section{
             border: 2px solid $secondColor;
         }
 
+        .product-info {
+            width: 35%;
+        }
+
 
         .date-container {
             @include displayFlex(center, center, column);
@@ -28,7 +32,7 @@ section{
     .add-user-btn {
         background-color: $secondColor;
         color: $fontColor;
-        position: absolute;
+        position: fixed;
         bottom: 56px;
         right: 56px;
         border-radius: 50%;

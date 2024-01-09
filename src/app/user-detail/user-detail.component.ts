@@ -34,7 +34,7 @@ export class UserDetailComponent {
   orderAmount: number = 0;
   total!: string;
   latestOrderStamp = '0';
-  orders!: any;
+  orders = Array();
 
 
   constructor(
@@ -75,10 +75,14 @@ export class UserDetailComponent {
     for (let i = 0; i < this.orders.length; i++) {
       const order = this.orders[i];
         let timeStampNumber = Number(order.orderTimeStamp);
-        let latestStampNumber = Number(this.latestOrderStamp)
+        let latestStampNumber = Number(this.latestOrderStamp);
         if (timeStampNumber > latestStampNumber) {
           this.latestOrderStamp = order.orderTimeStamp;
         }
+
+        console.log('hello');
+        
+
     }
   }
 

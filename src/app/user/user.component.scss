@@ -24,7 +24,7 @@ section {
     .add-user-btn {
         background-color: $secondColor;
         color: $fontColor;
-        position: absolute;
+        position: fixed;
         bottom: 56px;
         right: 56px;
         @include displayFlex(center, center);

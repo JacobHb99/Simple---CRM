@@ -1,19 +1,14 @@
-import { Component, QueryList, ViewChildren, inject } from '@angular/core';
+import { Component, ViewChildren, inject } from '@angular/core';
 import { User } from "../../models/user.class";
 import { Firestore, arrayUnion, collection, doc, onSnapshot, query, updateDoc } from '@angular/fire/firestore';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../models/product.class';
-import { MatOptionModule } from '@angular/material/core';
-import { MatSelectModule } from '@angular/material/select';
+
 import { SingleOrderInputComponent } from '../single-order-input/single-order-input.component';
-import { empty } from 'rxjs';
-import { update } from '@angular/fire/database';
+
 
 
 @Component({
@@ -43,10 +38,7 @@ export class NewOrderComponent {
   orders: any = [];
   order = Array();
   product!: Product;
-  selectedProduct = {
-    product: {},
-    amount: 1,
-  }
+
   selectedValue: any = [];
   inputs = [
     '',
@@ -67,8 +59,8 @@ export class NewOrderComponent {
 
 
   async getProducts(collRef: any) {
-    const userCollection = collRef;
-    const q = query(userCollection);
+    const collectionRef = collRef;
+    const q = query(collectionRef);
     const unsubscribe = onSnapshot(q, (snapshot) => {
       this.allProducts = [];
       snapshot.forEach((doc) => {
