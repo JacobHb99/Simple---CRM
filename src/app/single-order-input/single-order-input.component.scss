@@ -20,7 +20,14 @@ gap: 16px;
     background-color: $bgColor !important;
     border-bottom: 2px solid $fontColor;
     cursor: pointer;
+    color: red !important;
+
     &:hover{
-        border-bottom: 2px solid $secondColor;
+        background-color: $mainColor !important;
+            border-bottom: 2px solid $secondColor;
     }
+}
+
+.mdc-list-item__primary-text{
+    color: green !important;
 }

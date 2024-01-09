@@ -3,7 +3,7 @@
         <mat-label class="form-field">Selected product</mat-label>
         <mat-select (load)="createSingleOrderTask()" [(ngModel)]="selectedValues" name="product">
             @for (product of allProducts; track product) {
-            <mat-option (click)="createSingleOrderTask()" [value]="product">{{product.title}}</mat-option>
+            <mat-option class="selectField" (click)="createSingleOrderTask()" [value]="product">{{product.title}}</mat-option>
             }
         </mat-select>
     </mat-form-field>

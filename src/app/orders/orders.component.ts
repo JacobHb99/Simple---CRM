@@ -31,19 +31,23 @@ export class OrdersComponent {
     let currentUser = this.firebaseService.getSingleDoc(order.userId);
     console.log('order', order);
     debugger;
+    this.deleteOldStatusOrder(currentUser, order);
+    order.status = !order.status;
+    console.log('order', order);
+    this.pushNewStatusOrder(currentUser, order);
+  }
+
+
+  async deleteOldStatusOrder(currentUser: any, order: any) {
     await updateDoc(currentUser, {
       orders: arrayRemove(order)
     });
-    
+  }
 
 
-
-    order.status = !order.status;
-    console.log('order', order);
-
+  async pushNewStatusOrder(currentUser: any, order: any) {
     await updateDoc(currentUser, {
       orders: arrayUnion(order)
     });
-    
   }
 }
