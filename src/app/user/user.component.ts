@@ -8,9 +8,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { User } from "../../models/user.class";
 import { MatListModule } from '@angular/material/list';
 import { Firestore, collection, collectionData, addDoc, doc, getDocs, onSnapshot, query } from '@angular/fire/firestore';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 import { UserDetailComponent } from '../user-detail/user-detail.component';
 import { FirebaseServiceService } from '../firebase-service.service';
+import { slideInAnimation } from '../_animations';
 
 
 
@@ -27,7 +28,12 @@ import { FirebaseServiceService } from '../firebase-service.service';
     RouterLink,
     RouterLinkActive,
     MatButtonModule,
-    UserDetailComponent
+    UserDetailComponent,
+    RouterOutlet, 
+    RouterModule
+  ],
+  animations: [
+    slideInAnimation
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'

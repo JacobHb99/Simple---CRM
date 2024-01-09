@@ -24,6 +24,7 @@ export class DashboardComponent {
   allOrders = Array();
   allAmounts = Array();
   allDates = Array();
+  allStamps = Array();
   userChartData: any = {
     xData: Array(),
     yData: Array(),
@@ -95,14 +96,22 @@ export class DashboardComponent {
 
   getOrdersforToday() {
     let total = 0;
+    let stamp = 0;
+    this.allStamps = Array();
     for (let i = 0; i < this.allOrders.length; i++) {
       const order = this.allOrders[i];
-      let date = this.getDate(order.timeStamp);
-      this.allDates.push(date);
+      this.createDateArray(order, stamp);
       this.createDateData();
       total += order.price * order.amount;
       this.total = total.toFixed(2);
     }
+  }
+
+
+  createDateArray(order: any, stamp: number) {
+    this.allDates.push(this.getDate(order.orderTimeStamp));
+    this.allDates.sort();
+    console.log(this.allDates);
   }
 
 

@@ -79,10 +79,6 @@ export class UserDetailComponent {
         if (timeStampNumber > latestStampNumber) {
           this.latestOrderStamp = order.orderTimeStamp;
         }
-
-        console.log('hello');
-        
-
     }
   }
 

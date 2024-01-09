@@ -105,9 +105,7 @@ export class NewOrderComponent {
       const element = order[k];
       element.orderId = i;
       element.orderTimeStamp = Date.now();
-      element.status = false;
-      console.log(element.todo);
-      
+      element.status = false;      
 
       await updateDoc(currentUser, {
         orders: arrayUnion(element)

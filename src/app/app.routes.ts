@@ -9,14 +9,36 @@ import { AboutComponent } from './about/about.component';
 import { MeetingsComponent } from './meetings/meetings.component';
 
 export const routes: Routes = [
-    {path: '', component: DashboardComponent},
-    {path: 'user', component: UserComponent},
-    {path: 'user/:id', component: UserDetailComponent},
-    {path: 'dashboard', component: DashboardComponent},
-    {path: 'orders', component: OrdersComponent},
-    {path: 'products', component: ProductsComponent},
-    {path: 'meetings', component: MeetingsComponent},
-    {path: 'about', component: AboutComponent}
-
-
+    {
+        path: '', component: DashboardComponent,
+        data: { animation: 'dashboard' }
+    },
+    {
+        path: 'user', component: UserComponent,
+        data: { animation: 'user' }
+    },
+    {
+        path: 'user/:id', component: UserDetailComponent,
+        data: { animation: 'openClosePage' }
+    },
+    {
+        path: 'dashboard', component: DashboardComponent,
+        data: { animation: 'dashboard' }
+    },
+    {
+        path: 'orders', component: OrdersComponent,
+        data: { animation: 'orders' }
+    },
+    {
+        path: 'products', component: ProductsComponent,
+        data: { animation: 'products' }
+    },
+    {
+        path: 'meetings', component: MeetingsComponent,
+        data: { animation: 'meetings' }
+    },
+    {
+        path: 'about', component: AboutComponent,
+        data: { animation: 'about' }
+    }
 ];

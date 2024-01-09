@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ChildrenOutletContexts, Router, RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -9,6 +9,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { slideInAnimation } from './_animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -26,7 +28,11 @@ import { Observable } from 'rxjs';
     MatToolbarModule,
     MatIconModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    RouterModule,
+  ],
+  animations: [
+    slideInAnimation
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -39,8 +45,13 @@ export class AppComponent {
   items$: Observable<any[]>;
 
 
-  constructor() {
-    const usersCollection = collection(this.firestore, 'users')
+  constructor(private contexts: ChildrenOutletContexts) {
+    const usersCollection = collection(this.firestore, 'users');
     this.items$ = collectionData(usersCollection);
+  }
+
+
+  prepareRoute() {
+    return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];    
   }
 }

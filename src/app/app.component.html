@@ -25,8 +25,8 @@
       <span>Simple CRM</span>
     </mat-toolbar>
 
-    <div class="router-container">
-      <router-outlet></router-outlet>
+    <div class="router-container" [@routeAnimations]="prepareRoute()">
+      <router-outlet #outlet="outlet"></router-outlet>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
