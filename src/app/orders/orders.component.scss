@@ -1,9 +1,15 @@
 @import '../../styles.scss';
 $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/';
 
-h1{
+
+.headline-container{
+    @include displayFlex(space-between);
     color: $secondColor;
+
+    h1{
+    }
 }
+
 
 .line{
     height: 2px;
@@ -41,6 +47,7 @@ button{
     margin-bottom: 16px;
     border: 2px solid $mainColor;
     border-radius: 16px;
+    background-color: #002435;
     padding: 16px;
     margin-top: 16px;
     cursor: pointer;

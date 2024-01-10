@@ -63,16 +63,31 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
     font-size: 32px;
     padding-top: 16px;
     padding-bottom: 16px;
-    @include displayFlex(space-between, center);
+    @include displayFlex(flex-end, center);
+    position: relative;
 
     button{
         background-color: $secondColor;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 16px;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 16px;
         @include displayFlex(center, center);
-        margin-left: 56px;
+        position: absolute;
+        left: 0;
+        top: 0;
     }
 
-    span{
+    .logo-text{
         margin-right: 56px;
+
+        .c{
+            color: $secondColor;
+        }
+
+        .r{
+            color: $mainColor;
+        }
     }
 }
 

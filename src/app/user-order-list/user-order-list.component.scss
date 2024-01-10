@@ -19,6 +19,7 @@ h1 {
     @include displayFlex(space-between, center);
     border: 2px solid $mainColor;
     border-radius: 16px;
+    background-color: #002435;
     padding: 16px;
     margin-top: 16px;
     position: relative;

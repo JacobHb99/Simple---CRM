@@ -12,6 +12,9 @@ import { arrayRemove, arrayUnion, updateDoc } from '@firebase/firestore';
 })
 export class OrdersComponent {
   isLoading = true;
+  doneOrders = Array();
+  todoOrders = Array();
+
 
 
   constructor(public dialog: MatDialog, public firebaseService: FirebaseServiceService) {}

@@ -18,11 +18,15 @@
 
   <mat-drawer-content>
     <mat-toolbar class="toolbar">
-      <button mat-icon-button (click)="drawer.toggle()">
+      <button mat-button (click)="drawer.toggle()">
         <i class="material-icons">menu</i>
       </button>
-
-      <span>Simple CRM</span>
+      <div class="logo-text">
+        <span>Simple-</span>
+        <span class="c">C</span>
+        <span class="r">R</span>
+        <span class="m">M</span>
+      </div>
     </mat-toolbar>
 
     <div class="router-container" [@routeAnimations]="prepareRoute()">

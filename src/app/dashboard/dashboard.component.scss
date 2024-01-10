@@ -43,11 +43,10 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
         border: 2px solid $mainColor;
         border-radius: 16px;
         padding: 16px;
-        margin-bottom: 16px;
         cursor: pointer;
-        width: calc(50% - 44px);
+        width: 100%;
         min-width: 300px;
-
+        background-color: #002435;
 
         .chart {
             width: 100%;
@@ -58,6 +57,7 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
 
         &:hover {
             border: 2px solid $secondColor;
+            //color: ,
         }
     }
 }

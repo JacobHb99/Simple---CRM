@@ -9,8 +9,11 @@ export class FirebaseServiceService {
   allUsers = Array();
   allProducts = Array();
   allOrders = Array();
+  doneOrders = Array();
+  todoOrders = Array();
 
   constructor() { }
+
 
   async getUsers() {
     const userCollection = collection(this.firestore, 'users');
@@ -40,12 +43,19 @@ export class FirebaseServiceService {
     const userCollection = collection(this.firestore, 'users');
     const q = query(userCollection);
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      this.allUsers = [];
-      this.allOrders = [];
+      this.clearArrays();
       snapshot.forEach((doc) => {
         this.pushOrders(doc.data(), doc.id);
       });
     });
+  }
+
+
+  clearArrays() {
+    this.allUsers = [];
+    this.allOrders = [];
+    this.doneOrders = [];
+    this.todoOrders = [];
   }
 
 
@@ -55,7 +65,17 @@ export class FirebaseServiceService {
       order.user = `${user.firstName} ${user.lastName}`;
       order.userId = id;
       this.allOrders.push(order);
+      this.checkStatus(order);
     }
+  }
+
+
+  checkStatus(order: any) { 
+      if (order.status) {
+        this.doneOrders.unshift(order);
+      } else {
+        this.todoOrders.unshift(order);
+      }
   }
 
 
