@@ -24,6 +24,9 @@ h1 {
     margin-top: 16px;
     position: relative;
 
+    &:hover{
+        border: 2px solid $secondColor;
+    }
 
 
     .text-container {
