@@ -47,12 +47,10 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
         width: 100%;
         min-width: 300px;
         background-color: #002435;
+        @include displayFlex();
 
         .chart {
-            width: 100%;
-            min-width: 300px;
-            height: 30vh;
-            object-fit: contain;
+
         }
 
         &:hover {

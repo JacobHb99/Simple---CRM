@@ -1,10 +1,13 @@
-import { Component, inject } from '@angular/core';
+import { Component, Injectable, ViewChildren, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Firestore, collection, collectionData, doc, getDoc, onSnapshot, query } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import Chart from 'chart.js/auto';
 
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-dashboard',
@@ -38,6 +41,9 @@ export class DashboardComponent {
   public chart!: any;
   total!: string;
   stampArr = Array();
+  @ViewChildren('totalsChart') totalsChart: any;
+  @ViewChildren('datesChart') datesChart: any;
+  @ViewChildren('orderStatusChart') orderStatusChart: any;
 
 
 
@@ -74,7 +80,7 @@ export class DashboardComponent {
   }
 
 
-  checkStatus(user: any) { 
+  checkStatus(user: any) {
     for (let i = 0; i < user.orders.length; i++) {
       const order = user.orders[i];
       if (order.status) {
@@ -83,7 +89,7 @@ export class DashboardComponent {
         this.todoOrders.unshift(order);
       }
     }
-}
+  }
 
 
   addUserId(user: any, id: any) {
@@ -177,8 +183,9 @@ export class DashboardComponent {
             data: data.yData,
             backgroundColor: color,
             borderColor: 'white',
-            pointHoverBackgroundColor: '#f62901'
-
+            pointHoverBackgroundColor: '#f62901',
+            borderRadius: 16,
+            hoverBackgroundColor: '#f21901'
           }
         ]
       },
@@ -214,11 +221,32 @@ export class DashboardComponent {
               '#0a373e',
               'rgb(255, 205, 86)'
             ],
-            hoverOffset: 4
+            hoverOffset: 8
           }
         ]
       },
+      options: {
+        plugins: {
+          legend: {
+            position: 'right'
+          }
+        }
+      }
     });
-}
+  }
+
+
+  changeChartSize() {
+    this.totalsChart.canvas.parentNode.style.height = '40vh';
+    this.totalsChart.canvas.parentNode.style.width = 'calc(100vw - 112px)';
+
+
+    this.datesChart.canvas.parentNode.style.height = '40vh';
+    this.datesChart.canvas.parentNode.style.width = 'calc(100vw - 112px)';
+
+
+    this.orderStatusChart.canvas.parentNode.style.height = '40vh';
+    this.orderStatusChart.canvas.parentNode.style.width = 'calc(100vw - 112px)';
+  }
 
 }

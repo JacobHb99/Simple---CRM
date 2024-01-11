@@ -11,6 +11,8 @@ import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { slideInAnimation } from './_animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {  HttpClientModule } from '@angular/common/http';
 
 
 
@@ -30,6 +32,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterLink,
     RouterLinkActive,
     RouterModule,
+    DashboardComponent,
+    HttpClientModule
   ],
   animations: [
     slideInAnimation
@@ -45,7 +49,7 @@ export class AppComponent {
   items$: Observable<any[]>;
 
 
-  constructor(private contexts: ChildrenOutletContexts) {
+  constructor(private contexts: ChildrenOutletContexts, public dashboard: DashboardComponent) {
     const usersCollection = collection(this.firestore, 'users');
     this.items$ = collectionData(usersCollection);
   }
