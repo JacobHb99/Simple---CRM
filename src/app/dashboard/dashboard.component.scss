@@ -37,6 +37,7 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
     @include displayFlex();
     gap: 16px;
     flex-wrap: wrap;
+    margin-bottom: 16px;
 
 
     .chart-container {
@@ -45,9 +46,10 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
         padding: 16px;
         cursor: pointer;
         width: 100%;
-        min-width: 300px;
+        min-width: 240px;
         background-color: #002435;
         @include displayFlex();
+        height: min-content;
 
         .chart {
 
@@ -58,4 +60,12 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
             //color: ,
         }
     }
+
+
+    @media(max-width: 700px) {
+        .line-chart{
+            height: auto !important;
+        }
+    }
 }
+

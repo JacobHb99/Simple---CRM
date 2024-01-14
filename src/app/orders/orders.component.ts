@@ -2,11 +2,18 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FirebaseServiceService } from '../firebase-service.service';
 import { arrayRemove, arrayUnion, updateDoc } from '@firebase/firestore';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [],
+  imports: [
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
+  ],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.scss'
 })

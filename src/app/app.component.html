@@ -1,31 +1,31 @@
 <mat-drawer-container class="mat-drawer-container" [hasBackdrop]="false">
-  <mat-drawer class="sidenav-container" #drawer [mode]="'side'" [opened]="true">
+  <mat-drawer class="sidenav-container" #drawer [mode]="sideNavMode" [opened]="sideNavOpen">
     <div class="logo">
       Simple-CRM
     </div>
 
     <ul>
-      <li routerLink="/dashboard" routerLinkActive="activeLink"><i class="material-icons">account_balance</i>Dashboard
-      </li>
-      <li routerLink="/user" routerLinkActive="activeLink"><i class="material-icons">account_circle</i>User</li>
+      <li routerLink="/dashboard" routerLinkActive="activeLink"><i class="material-icons">account_balance</i>Dashboard</li>
+      <li routerLink="/user" routerLinkActive="activeLink"><i class="material-icons">account_circle</i>Customers</li>
       <li routerLink="/orders" routerLinkActive="activeLink"><i class="material-icons">all_inbox</i>Orders</li>
-      <li routerLink="/meetings" routerLinkActive="activeLink"><i class="material-icons">comment</i>Meetings</li>
-      <li routerLink="/products" routerLinkActive="activeLink"><i
-          class="material-icons">account_balance_wallet</i>Products</li>
+      <li routerLink="/products" routerLinkActive="activeLink"><i class="material-icons">account_balance_wallet</i>Products</li>
       <li routerLink="/about" routerLinkActive="activeLink"><i class="material-icons">info</i>About</li>
     </ul>
   </mat-drawer>
 
   <mat-drawer-content>
     <mat-toolbar class="toolbar">
-      <button mat-button (click)="drawer.toggle()" >
-        <i class="material-icons">menu</i>
-      </button>
-      <div class="logo-text">
-        <span>Simple-</span>
-        <span class="c">C</span>
-        <span class="r">R</span>
-        <span class="m">M</span>
+      <div class="container">
+        <button mat-button (click)="drawer.toggle()" >
+          <i class="material-icons">menu</i>
+        </button>
+        
+        <div class="logo-text">
+          <span>Simple-</span>
+          <span class="c">C</span>
+          <span class="r">R</span>
+          <span class="m">M</span>
+        </div>
       </div>
     </mat-toolbar>
 

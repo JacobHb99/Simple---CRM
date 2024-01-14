@@ -15,20 +15,39 @@ section{
         row-gap: 16px;
         padding: 16px;
         cursor: pointer;
+        position: relative;
 
         &:hover{
             border: 2px solid $secondColor;
         }
 
         .product-info {
-            width: 35%;
+            width: 250px;
             margin-right: 32px;
         }
 
 
         .date-container {
             width: fit-content;
+            margin-right: 16px;
             @include displayFlex(center, flex-start, column);
+        }
+
+        .price-container{
+            font-weight: 600;
+        }
+
+        .delete-btn{
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 16px;
+            transition: 0.2s ease-in-out;
+
+            &:hover{
+                color: $secondColor;
+                scale: 1.1;
+            }
         }
     }
 

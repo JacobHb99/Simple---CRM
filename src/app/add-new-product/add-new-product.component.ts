@@ -37,10 +37,10 @@ export class AddNewProductComponent {
     this.productCollection = collection(this.firestore, 'products');
   }
 
-
-  async saveProduct() {
-    console.log(this.product);
-    
+  /**
+   * Sends new data to firestore and controls the loading bar.
+   */
+  async saveProduct() {    
     this.isLoading = true;
     const docRef = await addDoc(this.productCollection, this.product.toJson());      
     this.isLoading = false;
@@ -48,11 +48,9 @@ export class AddNewProductComponent {
   }
 
 
-  onNoClick(): void {
-    this.closeDialog();
-  }
-
-
+  /**
+   * Closes the dialog-container.
+   */
   closeDialog() {
     this.dialogRef.close();
   }

@@ -6,9 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../models/product.class';
-
 import { SingleOrderInputComponent } from '../single-order-input/single-order-input.component';
-
 
 
 @Component({
@@ -23,6 +21,8 @@ import { SingleOrderInputComponent } from '../single-order-input/single-order-in
   templateUrl: './new-order.component.html',
   styleUrl: './new-order.component.scss'
 })
+
+
 export class NewOrderComponent {
   user!: User;
   userId!: string;
@@ -35,16 +35,14 @@ export class NewOrderComponent {
   amountToString: string = '';
   priceToString: string = '';
   allProducts = Array();
+  currentOrder = Array();
   orders: any = [];
   order = Array();
   product!: Product;
-
   selectedValue: any = [];
   inputs = [
     '',
   ];
-  currentOrder = Array();
-
 
 
   constructor(public dialogRef: MatDialogRef<NewOrderComponent>, private route: ActivatedRoute) {
@@ -58,6 +56,10 @@ export class NewOrderComponent {
   }
 
 
+  /**
+   * Gets data from all products from firebase.
+   * @param collRef 
+   */
   async getProducts(collRef: any) {
     const collectionRef = collRef;
     const q = query(collectionRef);
@@ -67,16 +69,6 @@ export class NewOrderComponent {
         this.allProducts.push(doc.data())
       });
     });
-  }
-
-
-
-  updatePrice() {
-    /*     let amount = Number(this.amountToString);
-        let price = Number(this.priceToString);
-        let total = price * amount;
-        this.product.price = total.toFixed(2);
-        this.product.amount = amount; */
   }
 
 
@@ -134,7 +126,7 @@ export class NewOrderComponent {
   addInputField() {
     let html: string =/*html*/`
       <app-single-order-input (singleProduct)="addOrderTask($event)" [allProducts]="allProducts"></app-single-order-input>
-    `;
+      `;
     this.inputs.push(html);
   }
 

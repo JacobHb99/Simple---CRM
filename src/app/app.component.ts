@@ -13,7 +13,8 @@ import { slideInAnimation } from './_animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {  HttpClientModule } from '@angular/common/http';
-
+import { BreakpointObserverService } from './breakpoint-observer.service';
+import { BooleanInput } from '@angular/cdk/coercion';
 
 
 
@@ -33,7 +34,7 @@ import {  HttpClientModule } from '@angular/common/http';
     RouterLinkActive,
     RouterModule,
     DashboardComponent,
-    HttpClientModule
+    HttpClientModule,
   ],
   animations: [
     slideInAnimation
@@ -47,9 +48,11 @@ export class AppComponent {
   title = 'simple-crm';
   firestore: Firestore = inject(Firestore);
   items$: Observable<any[]>;
+  sideNavMode: MatDrawerMode = 'side';
+  sideNavOpen: BooleanInput = true;
 
 
-  constructor(private contexts: ChildrenOutletContexts, public dashboard: DashboardComponent) {
+  constructor(private contexts: ChildrenOutletContexts, public dashboard: DashboardComponent,public breakpointService: BreakpointObserverService) {
     const usersCollection = collection(this.firestore, 'users');
     this.items$ = collectionData(usersCollection);
   }

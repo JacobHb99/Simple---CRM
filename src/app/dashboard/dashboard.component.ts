@@ -1,7 +1,7 @@
 import { Component, Injectable, ViewChildren, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Firestore, collection, collectionData, doc, getDoc, onSnapshot, query } from '@angular/fire/firestore';
+import { DocumentData, Firestore, collection, collectionData, doc, getDoc, onSnapshot, query } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import Chart from 'chart.js/auto';
 
@@ -57,7 +57,9 @@ export class DashboardComponent {
     this.getUsers();
   }
 
-
+  /**
+   * Get data from all users from firestore.
+   */
   async getUsers() {
     const userCollection = collection(this.firestore, 'users');
     const q = query(userCollection);
@@ -69,17 +71,26 @@ export class DashboardComponent {
         this.addUserId(doc.data(), doc.id);
         this.checkStatus(doc.data());
       });
-      console.log(this.doneOrders);
-      console.log(this.todoOrders);
-
       this.getOrdersforToday();
-      this.createChart("totalsChart", 'bar', this.userChartData, 'Totals (€)', 'white');
-      this.createChart("datesChart", 'line', this.dateChartData, 'Orders per day', '#f62901');
-      this.createDoughnutChart("orderStatusChart", 'doughnut', 'Orderstatus', '#f62901');
+      this.createCharts();
     });
   }
 
 
+  /**
+   * Calls function with individual data, to create charts.
+   */
+  createCharts() {
+    this.createChart("totalsChart", 'bar', this.userChartData, 'Totals (€)', 'white');
+    this.createChart("datesChart", 'line', this.dateChartData, 'Orders per day', '#f62901');
+    this.createDoughnutChart("orderStatusChart", 'doughnut', 'Orderstatus', '#f62901');
+  }
+
+
+  /**
+   * Sorts all orders according to status.
+   * @param user - current user.
+   */
   checkStatus(user: any) {
     for (let i = 0; i < user.orders.length; i++) {
       const order = user.orders[i];
@@ -92,6 +103,11 @@ export class DashboardComponent {
   }
 
 
+  /**
+   * Adds document-id from firebase to user-object.
+   * @param user 
+   * @param id 
+   */
   addUserId(user: any, id: any) {
     user.idField = id;
     this.allUsers.push(user);
@@ -100,6 +116,10 @@ export class DashboardComponent {
   }
 
 
+  /**
+   * Saves prices, amounts nad totals of all orders and adds the data to the arrays.
+   * @param user 
+   */
   pushOrders(user: any) {
     let price = 0;
     let amount = 0;
@@ -115,11 +135,20 @@ export class DashboardComponent {
   }
 
 
+  /**
+   * Adds the price of the current order to the previous total.
+   * @param currentTotal 
+   * @param orderPrice 
+   * @returns - new total.
+   */
   calculateTotals(currentTotal: any, orderPrice: any) {
     return currentTotal += orderPrice;
   }
 
 
+  /**
+   * Calculates the total and order-amount per day.
+   */
   getOrdersforToday() {
     let total = 0;
     let stamp = 0;
@@ -134,6 +163,11 @@ export class DashboardComponent {
   }
 
 
+  /**
+   * Adds the timestamp of each order and calls a function to generate a date.
+   * @param order 
+   * @param stamp 
+   */
   createDateArray(order: any, stamp: number) {
     this.allDates = [];
     this.stampArr.push(order.orderTimeStamp);
@@ -158,6 +192,11 @@ export class DashboardComponent {
   }
 
 
+  /**
+   * Creates a string with the appropriate date from a timestamp.
+   * @param timeStamp 
+   * @returns - timestamp as date.
+   */
   getDate(timeStamp: any) {
     let date = new Date(timeStamp);
     let day = date.getDate();
@@ -167,6 +206,14 @@ export class DashboardComponent {
   }
 
 
+  /**
+   * Creates chart.
+   * @param chartId 
+   * @param chartType 
+   * @param data 
+   * @param label 
+   * @param color 
+   */
   createChart(chartId: string, chartType: any, data: any, label: string, color: any) {
     let chartExist = Chart.getChart(chartId); // <canvas> id
     if (chartExist != undefined) {

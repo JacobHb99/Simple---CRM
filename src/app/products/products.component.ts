@@ -15,7 +15,6 @@ import { FirebaseServiceService } from '../firebase-service.service';
   selector: 'app-products',
   standalone: true,
   imports: [
-    MatTooltipModule,
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
@@ -34,6 +33,11 @@ export class ProductsComponent {
 
   ngOnInit() {
     this.firebaseService.getProducts();
+  }
+
+
+  deleteProduct(idField: string) {
+    this.firebaseService.deleteDoc('products', idField);
   }
 
 

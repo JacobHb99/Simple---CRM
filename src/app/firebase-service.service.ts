@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, SnapshotOptions, collection, doc, onSnapshot, query } from '@angular/fire/firestore';
+import { Firestore, SnapshotOptions, collection, deleteDoc, doc, onSnapshot, query } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +48,11 @@ export class FirebaseServiceService {
         this.pushOrders(doc.data(), doc.id);
       });
     });
+  }
+
+
+  async deleteDoc(collRef: string, docId: string) {
+    await deleteDoc(doc(this.firestore, collRef, docId));
   }
 
 

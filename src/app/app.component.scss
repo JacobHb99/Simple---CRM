@@ -2,7 +2,6 @@
 $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/';
 
 
-
 .mat-drawer-container{
     width: 100vw;
     max-width: 100%;
@@ -57,36 +56,48 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
 }
 
 .mat-toolbar, .mat-toolbar-single-row{
-    min-height: 56px;
-    background-color: $bgColor;
+    background-color: #002435;
     color: $fontColor;
     font-size: 32px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    @include displayFlex(flex-end, center);
-    position: relative;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    position: sticky;
+    z-index: 99;
+    top: 0;
+    right: 0;
+    box-shadow: 0px 0px 5px $mainColor;
 
-    button{
-        background-color: $secondColor;
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 16px;
-        border-top-left-radius: 0px;
-        border-top-right-radius: 16px;
-        @include displayFlex(center, center);
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
+    .container {
+        min-height: 56px;
+        height: 100%;
+        width: 100%;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        position: relative;
+        @include displayFlex(flex-end, center);
 
-    .logo-text{
-        margin-right: 56px;
-
-        .c{
-            color: $secondColor;
+        button{
+            background-color: $secondColor;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 16px;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 16px;
+            @include displayFlex(center, center);
+            position: absolute;
+            left: 0;
+            height: 64px;
         }
-
-        .r{
-            color: $mainColor;
+    
+        .logo-text{
+            margin-right: 56px;
+    
+            .c{
+                color: $secondColor;
+            }
+    
+            .r{
+                color: $mainColor;
+            }
         }
     }
 }

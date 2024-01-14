@@ -18,7 +18,7 @@
             </div>
     
             <div class="right">
-                <button (click)="checkOrderAsDone(order, $index)">
+                <button (click)="checkOrderAsDone(order, $index)" mat-icon-button matTooltip="Remove from todo-list">
                     <i class="material-icons">check</i>
                 </button>
             </div>
@@ -26,7 +26,7 @@
     }
 }
 
-<div class="headline-container">
+<div class="headline-container done">
     <h1>Done:</h1>
     <h1>{{ firebaseService.doneOrders.length }} Tasks</h1>
 </div>
@@ -46,7 +46,7 @@
             </div>
     
             <div class="right">
-                <button (click)="checkOrderAsDone(order, $index)">
+                <button (click)="checkOrderAsDone(order, $index)" mat-icon-button matTooltip="get the order back">
                     <i class="material-icons">backspace</i>
                 </button>
             </div>

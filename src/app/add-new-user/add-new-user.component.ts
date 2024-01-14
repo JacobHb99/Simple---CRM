@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
-import {MatButtonModule} from '@angular/material/button';
-import {FormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDialogModule, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { User } from "../../models/user.class";
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 
@@ -25,8 +25,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatDialogModule,
     MatProgressBarModule
   ],
-  providers: [  
-    MatDatepickerModule,  
+  providers: [
+    MatDatepickerModule,
     MatNativeDateModule
   ],
   templateUrl: './add-new-user.component.html',
@@ -39,7 +39,7 @@ export class AddNewUserComponent {
   dateOfBirth!: Date;
   firestore: Firestore = inject(Firestore);
   userCollection;
-  isLoading: boolean= false;
+  isLoading: boolean = false;
 
 
   constructor(public dialogRef: MatDialogRef<AddNewUserComponent>) {
@@ -47,20 +47,21 @@ export class AddNewUserComponent {
   }
 
 
-  onNoClick(): void {
-    this.closeDialog();
-  }
-
-
+  /**
+   * Sends data freom new user to firebase.
+   */
   async saveUser() {
     this.isLoading = true;
     this.user.dateOfBirth = this.dateOfBirth.getTime();
-    const docRef = await addDoc(this.userCollection, this.user.toJson());  
+    const docRef = await addDoc(this.userCollection, this.user.toJson());
     this.isLoading = false;
     this.closeDialog();
   }
 
 
+ /**
+ * Closes the dialog-container.
+ */
   closeDialog() {
     this.dialogRef.close();
   }

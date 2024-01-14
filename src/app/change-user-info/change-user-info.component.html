@@ -40,7 +40,7 @@
 
 
     <div mat-dialog-actions>
-        <button [disabled]="isLoading" mat-button (click)="onNoClick()">Cancel</button>
+        <button [disabled]="isLoading" mat-button (click)="closeDialog()">Cancel</button>
         <button [disabled]="isLoading" mat-button cdkFocusInitial (click)="saveUser()">Save</button>
     </div>
     @if (isLoading) {

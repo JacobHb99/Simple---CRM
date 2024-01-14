@@ -40,15 +40,12 @@ export class ChangeUserInfoComponent {
 
 
   ngOnInit() {
-    this.getId();
   }
 
 
-  async getId() {
-    await console.log(this.userId);
-  }
-
-
+  /**
+   * Updates the changes on user-details and controlls the progress-bar-
+   */
   async saveUser() {
     this.isLoading = true;
     const userRef = await doc(this.firestore, 'users', this.userId);
@@ -58,11 +55,9 @@ export class ChangeUserInfoComponent {
   }
 
   
-  onNoClick(): void {
-    this.closeDialog();
-  }
-
-
+  /**
+   * Closes the dialog-container.
+   */
   closeDialog() {
     this.dialogRef.close();
   }

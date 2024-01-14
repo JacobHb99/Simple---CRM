@@ -6,7 +6,6 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ProductsComponent } from './products/products.component';
 import { AboutComponent } from './about/about.component';
-import { MeetingsComponent } from './meetings/meetings.component';
 
 export const routes: Routes = [
     {
@@ -32,10 +31,6 @@ export const routes: Routes = [
     {
         path: 'products', component: ProductsComponent,
         data: { animation: 'products' }
-    },
-    {
-        path: 'meetings', component: MeetingsComponent,
-        data: { animation: 'meetings' }
     },
     {
         path: 'about', component: AboutComponent,
