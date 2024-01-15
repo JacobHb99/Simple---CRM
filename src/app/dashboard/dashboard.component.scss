@@ -65,7 +65,10 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
     @media(max-width: 700px) {
         .line-chart{
             height: auto !important;
+            width: 100% !important;
         }
+
+        .chart{}
     }
 }
 

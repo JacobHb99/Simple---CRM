@@ -1,0 +1,27 @@
+@import '../../styles.scss';
+$material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/';
+
+
+ul{
+    list-style: none;
+    @include displayFlex(center, center, column);
+    padding-inline-start: 0px;
+    width: 100%;
+
+    li{
+        display: inline-block;
+        text-align: left;
+        padding: 16px;
+        width: calc(90% - 32px);
+        font-size: 24px;
+        font-weight: 400;
+        cursor: pointer;
+        @include displayFlex(center, center, row);
+        gap: 10px;
+
+        &:hover{
+            background-color: $secondHover;
+            border-radius: 16px;
+        }
+    }
+}

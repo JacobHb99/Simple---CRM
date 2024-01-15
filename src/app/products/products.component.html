@@ -1,6 +1,6 @@
 <section>
     @for (product of firebaseService.allProducts; track product.id) {
-    <div class="list-item" (click)="deleteProduct(product.idField)">
+    <div class="list-item">
         <div class="product-info">
             <h2 matListItemTitle>{{ product.title }}</h2>
             <span matListItemLine>{{ product.description }}</span>
@@ -15,7 +15,7 @@
             <span matListItemLine>{{ addDecimalNumbers(product.price) }}€</span>
         </div>
 
-        <i matTooltip="delete product" class="material-icons delete-btn">delete</i>
+        <i matTooltip="delete product" class="material-icons delete-btn" (click)="deleteProduct(product.idField)">delete</i>
 
     </div>
     }

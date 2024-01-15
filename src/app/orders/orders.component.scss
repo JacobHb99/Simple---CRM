@@ -63,8 +63,8 @@ button{
 
 
         .amount-container{
-            @include displayFlex(flex-start);
-            gap: 4px;
+            @include displayFlex(flex-start, flex-start);
+            gap: 8px;
         }
     }
 

@@ -18,4 +18,12 @@ export class UserOrderListComponent {
   ngOnInit() {
 
   }
+
+
+  addDecimalNumbers(price: number) {
+    let decimalPrice = price.toFixed(2);
+    decimalPrice.toString();
+    
+    return decimalPrice.replace('.', ',');
+  }
 }

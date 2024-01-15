@@ -9,6 +9,7 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
     background-color: $bgColor;
     color: $fontColor;
 
+
     .sidenav-container{
         width: 300px;
         font-size: 16px;
@@ -110,4 +111,9 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
 .activeLink{
     background-color: rgba(0, 0, 0, 0.2) !important;
     border-radius: 16px;
+}
+
+.mobile-nav{
+    width: 100% !important;
+    background-color: $secondColor !important;
 }

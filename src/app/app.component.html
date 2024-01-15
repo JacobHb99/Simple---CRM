@@ -1,22 +1,28 @@
 <mat-drawer-container class="mat-drawer-container" [hasBackdrop]="false">
-  <mat-drawer class="sidenav-container" #drawer [mode]="sideNavMode" [opened]="sideNavOpen">
+  <mat-drawer class="sidenav-container mobile-nav" #drawer [mode]="breakpointService.sideNavMode" 
+  [opened]="sideNavOpen" [ngClass]="{'mobile-nav': breakpointService.mobileOn}">
     <div class="logo">
       Simple-CRM
     </div>
 
-    <ul>
-      <li routerLink="/dashboard" routerLinkActive="activeLink"><i class="material-icons">account_balance</i>Dashboard</li>
-      <li routerLink="/user" routerLinkActive="activeLink"><i class="material-icons">account_circle</i>Customers</li>
-      <li routerLink="/orders" routerLinkActive="activeLink"><i class="material-icons">all_inbox</i>Orders</li>
-      <li routerLink="/products" routerLinkActive="activeLink"><i class="material-icons">account_balance_wallet</i>Products</li>
-      <li routerLink="/about" routerLinkActive="activeLink"><i class="material-icons">info</i>About</li>
-    </ul>
+    @if (mobileOn) {
+      <app-mobile-nav-list></app-mobile-nav-list>
+    } @else {
+      <ul>
+        <li routerLink="/dashboard" routerLinkActive="activeLink"><i class="material-icons">account_balance</i>Dashboard</li>
+        <li routerLink="/user" routerLinkActive="activeLink"><i class="material-icons">account_circle</i>Customers</li>
+        <li routerLink="/orders" routerLinkActive="activeLink"><i class="material-icons">all_inbox</i>Orders</li>
+        <li routerLink="/products" routerLinkActive="activeLink"><i class="material-icons">account_balance_wallet</i>Products</li>
+        <li routerLink="/about" routerLinkActive="activeLink"><i class="material-icons">info</i>About</li>
+      </ul>
+    }
+
   </mat-drawer>
 
   <mat-drawer-content>
     <mat-toolbar class="toolbar">
       <div class="container">
-        <button mat-button (click)="drawer.toggle()" >
+        <button mat-button (click)="drawer.toggle()">
           <i class="material-icons">menu</i>
         </button>
         

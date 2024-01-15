@@ -32,7 +32,7 @@ export class UserDetailComponent {
   public user = new User;
   userId!: any;
   orderAmount: number = 0;
-  total!: string;
+  total = 0;
   latestOrderStamp = '0';
   orders = Array();
 
@@ -90,7 +90,7 @@ export class UserDetailComponent {
       let orderPrice = order.price * order.amount;
         price += orderPrice;
     }
-    this.total = price.toFixed(2);    
+    this.total = price;    
   }
 
 
@@ -106,5 +106,13 @@ export class UserDetailComponent {
     dialogRef.componentInstance.user = new User(this.user.toJson());
     dialogRef.componentInstance.userId = this.userId;
     dialogRef.componentInstance.storedOrders = this.orders;
+  }
+
+
+  addDecimalNumbers(price: number) {
+    let decimalPrice = price.toFixed(2);
+    decimalPrice.toString();
+    
+    return decimalPrice.replace('.', ',');
   }
 }

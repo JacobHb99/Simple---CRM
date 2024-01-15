@@ -20,7 +20,7 @@
         <div class="price-container">
             <mat-form-field appearance="outline" color="accent">
                 <mat-label>Price</mat-label>
-                <input type="number" [disabled]="isLoading" matInput [(ngModel)]="product.price" class="input">
+                <input type="number" min="0" placeholder="0,00" step=".01" [disabled]="isLoading" matInput [(ngModel)]="product.price" class="input">
             </mat-form-field>
 
         </div>

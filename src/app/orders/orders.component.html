@@ -8,13 +8,13 @@
     @if (!order.status) {
         <div class="order-container">
             <div class="left">
-                <h2>{{ order.user }}</h2>
-    
                 <div class="amount-container">
-                    <h4>{{ order.amount }}x</h4>
-                    <h4>{{ order.title }}</h4>
+                    <h2>{{ order.amount }}x</h2>
+                    <h2>{{ order.title }}</h2>
                 </div>
-                <span>{{ order.description }}</span>
+
+                <h4>{{ order.description }}</h4>
+                <span>Customer: {{ order.user }}</span>
             </div>
     
             <div class="right">
@@ -36,13 +36,13 @@
     @if (order.status) {
         <div class="order-container">
             <div class="left">
-                <h2>{{ order.user }}</h2>
-    
                 <div class="amount-container">
-                    <h4>{{ order.amount }}x</h4>
-                    <h4>{{ order.title }}</h4>
+                    <h2>{{ order.amount }}x</h2>
+                    <h2>{{ order.title }}</h2>
                 </div>
-                <span>{{ order.description }}</span>
+
+                <h4>{{ order.description }}</h4>
+                <span>Customer: {{ order.user }}</span>
             </div>
     
             <div class="right">

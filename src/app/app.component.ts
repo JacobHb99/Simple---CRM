@@ -8,13 +8,14 @@ import {MatDrawerMode, MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { slideInAnimation } from './_animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {  HttpClientModule } from '@angular/common/http';
 import { BreakpointObserverService } from './breakpoint-observer.service';
 import { BooleanInput } from '@angular/cdk/coercion';
+import { MobileNavListComponent } from './mobile-nav-list/mobile-nav-list.component';
 
 
 
@@ -35,6 +36,7 @@ import { BooleanInput } from '@angular/cdk/coercion';
     RouterModule,
     DashboardComponent,
     HttpClientModule,
+    MobileNavListComponent
   ],
   animations: [
     slideInAnimation
@@ -48,15 +50,19 @@ export class AppComponent {
   title = 'simple-crm';
   firestore: Firestore = inject(Firestore);
   items$: Observable<any[]>;
-  sideNavMode: MatDrawerMode = 'side';
   sideNavOpen: BooleanInput = true;
-
+  mobileOn = false;
 
   constructor(private contexts: ChildrenOutletContexts, public dashboard: DashboardComponent,public breakpointService: BreakpointObserverService) {
     const usersCollection = collection(this.firestore, 'users');
     this.items$ = collectionData(usersCollection);
   }
 
+
+  ngOnInit() {
+    this.breakpointService.mobileOn.subscribe(x => this.mobileOn = x);
+    console.log(this.mobileOn);
+  }
 
   prepareRoute() {
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];    
