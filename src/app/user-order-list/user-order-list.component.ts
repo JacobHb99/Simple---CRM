@@ -16,7 +16,12 @@ export class UserOrderListComponent {
   }
 
   ngOnInit() {
-
+    for (let i = 0; i < this.orders.length; i++) {
+      const order = this.orders[i];
+        order.priceString = this.addDecimalNumbers(order.price);
+        console.log(order);
+        
+    }
   }
 
 

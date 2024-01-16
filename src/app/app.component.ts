@@ -58,7 +58,7 @@ export class AppComponent {
   currentBreakpoint: string = '';
 
   readonly breakpoint$ = this.breakpointObserver
-    .observe([Breakpoints.Large, Breakpoints.Medium, Breakpoints.Small, '(min-width: 500px)'])
+    .observe([Breakpoints.Large, Breakpoints.Medium, Breakpoints.HandsetPortrait, '(min-width: 500px)'])
     .pipe(
       tap(value => console.log(value)),
       distinctUntilChanged()
@@ -78,20 +78,22 @@ export class AppComponent {
   }
 
 
-  private breakpointChanged() {
+  public breakpointChanged() {
     if (this.breakpointObserver.isMatched(Breakpoints.Large)) {
       this.currentBreakpoint = Breakpoints.Large;
       this.sideNavMode = 'side';
     } else if (this.breakpointObserver.isMatched(Breakpoints.Medium)) {
       this.currentBreakpoint = Breakpoints.Medium;
       this.sideNavMode = 'side';
-    } else if (this.breakpointObserver.isMatched(Breakpoints.Small)) {
-      this.currentBreakpoint = Breakpoints.Small;
+    } else if (this.breakpointObserver.isMatched(Breakpoints.HandsetPortrait)) {
+      this.currentBreakpoint = Breakpoints.HandsetPortrait;
       this.sideNavMode = 'side';
-
+            this.sideNavMode = 'push';
     } else if (this.breakpointObserver.isMatched('(min-width: 500px)')) {
       this.currentBreakpoint = '(min-width: 500px)';
-      this.sideNavMode = 'push';
+      this.sideNavMode = 'side';
+    } else {
+      this.sideNavMode = 'side';
     }
   }
 

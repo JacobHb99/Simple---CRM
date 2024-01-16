@@ -1,11 +1,11 @@
 <mat-drawer-container class="mat-drawer-container" [hasBackdrop]="false">
   <mat-drawer class="sidenav-container mobile-nav" #drawer [mode]="sideNavMode" 
-  [opened]="sideNavOpen" [ngClass]="{'mobile-nav': currentBreakpoint == '(min-width: 500px)'}">
+  [opened]="sideNavOpen" [ngClass]="{'mobile-nav': currentBreakpoint == Breakpoints.HandsetPortrait}">
     <div class="logo">
       Simple-CRM
     </div>
 
-    @if (currentBreakpoint == '(min-width: 500px)') {
+    @if (currentBreakpoint == Breakpoints.HandsetPortrait) {
       <ul class="mobile-ul">
         <li routerLink="/dashboard" routerLinkActive="activeLink" (click)="drawer.toggle()"><i class="material-icons">account_balance</i>Dashboard</li>
         <li routerLink="/user" routerLinkActive="activeLink" (click)="drawer.toggle()"><i class="material-icons">account_circle</i>Customers</li>
@@ -22,7 +22,6 @@
         <li routerLink="/about" routerLinkActive="activeLink"><i class="material-icons">info</i>About</li>
       </ul>
     }
-
   </mat-drawer>
 
   <mat-drawer-content>
