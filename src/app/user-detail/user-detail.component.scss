@@ -148,3 +148,24 @@ mat-card-content{
         padding-top: 0;
     }
 }
+
+.empty-section{
+    height: calc(100vh - 80px);
+    width: 100%;
+    @include displayFlex();
+
+    .empty-container{
+        border-radius: 16px;
+        padding: 24px;
+        font-size: 16px;
+        @include displayFlex(center, center, column);
+        gap: 16px;
+        background-color: #002435;
+
+
+        i{
+            font-size: 160px !important;
+            color: #264958;
+        }
+    }
+}

@@ -45,7 +45,7 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
                 font-weight: 400;
                 cursor: pointer;
                 @include displayFlex(start, center, row);
-                gap: 10px;
+                gap: 8px;
 
                 &:hover{
                     background-color: $secondHover;
@@ -70,7 +70,7 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
 
     .container {
         min-height: 56px;
-        height: 100%;
+        height: 64px;
         width: 100%;
         padding-top: 16px;
         padding-bottom: 16px;
@@ -115,5 +115,18 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
 
 .mobile-nav{
     width: 100% !important;
-    background-color: $secondColor !important;
+}
+
+
+.mobile-ul{
+    list-style: none;
+    @include displayFlex(center, center, column);
+    padding-inline-start: 0px;
+    width: 100%;
+
+    li{
+        @include displayFlex(center !important, center, row);
+        i{
+        }
+    }
 }

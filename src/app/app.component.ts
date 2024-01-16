@@ -1,21 +1,22 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChildrenOutletContexts, Router, RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDrawerMode, MatSidenavModule} from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDrawerMode, MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, distinctUntilChanged, tap } from 'rxjs';
 import { slideInAnimation } from './_animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {  HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BreakpointObserverService } from './breakpoint-observer.service';
 import { BooleanInput } from '@angular/cdk/coercion';
 import { MobileNavListComponent } from './mobile-nav-list/mobile-nav-list.component';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 
 
@@ -23,8 +24,8 @@ import { MobileNavListComponent } from './mobile-nav-list/mobile-nav-list.compon
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule, 
-    RouterOutlet, 
+    CommonModule,
+    RouterOutlet,
     MatButtonModule,
     MatSelectModule,
     MatFormFieldModule,
@@ -48,23 +49,53 @@ import { MobileNavListComponent } from './mobile-nav-list/mobile-nav-list.compon
 
 export class AppComponent {
   title = 'simple-crm';
+  sideNavMode: MatDrawerMode = 'side';
   firestore: Firestore = inject(Firestore);
   items$: Observable<any[]>;
   sideNavOpen: BooleanInput = true;
   mobileOn = false;
+  Breakpoints = Breakpoints;
+  currentBreakpoint: string = '';
 
-  constructor(private contexts: ChildrenOutletContexts, public dashboard: DashboardComponent,public breakpointService: BreakpointObserverService) {
+  readonly breakpoint$ = this.breakpointObserver
+    .observe([Breakpoints.Large, Breakpoints.Medium, Breakpoints.Small, '(min-width: 500px)'])
+    .pipe(
+      tap(value => console.log(value)),
+      distinctUntilChanged()
+    );
+
+
+  constructor(private contexts: ChildrenOutletContexts, public dashboard: DashboardComponent, public breakpointObserver: BreakpointObserver) {
     const usersCollection = collection(this.firestore, 'users');
     this.items$ = collectionData(usersCollection);
   }
 
 
   ngOnInit() {
-    this.breakpointService.mobileOn.subscribe(x => this.mobileOn = x);
-    console.log(this.mobileOn);
+    this.breakpoint$.subscribe(() =>
+      this.breakpointChanged()
+    );
+  }
+
+
+  private breakpointChanged() {
+    if (this.breakpointObserver.isMatched(Breakpoints.Large)) {
+      this.currentBreakpoint = Breakpoints.Large;
+      this.sideNavMode = 'side';
+    } else if (this.breakpointObserver.isMatched(Breakpoints.Medium)) {
+      this.currentBreakpoint = Breakpoints.Medium;
+      this.sideNavMode = 'side';
+    } else if (this.breakpointObserver.isMatched(Breakpoints.Small)) {
+      this.currentBreakpoint = Breakpoints.Small;
+      this.sideNavMode = 'side';
+
+    } else if (this.breakpointObserver.isMatched('(min-width: 500px)')) {
+      this.currentBreakpoint = '(min-width: 500px)';
+      this.sideNavMode = 'push';
+    }
   }
 
   prepareRoute() {
-    return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];    
+    return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
   }
 }

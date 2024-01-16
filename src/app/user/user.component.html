@@ -1,4 +1,5 @@
 <section>
+@if (userService.allUsers.length > 0) {
     <mat-list>
         @for (user of userService.allUsers; track user.id) {
             <mat-list-item [routerLink]="[user.idField]">
@@ -7,6 +8,14 @@
             </mat-list-item>
         }
     </mat-list>
+} @else {
+    <div class="empty-section">
+        <div class="empty-container">
+            <i class="material-icons">no_accounts</i>
+            <span>There are no customers at the moment</span>
+        </div>
+    </div>
+}
 
     <button (click)="openAddUserDialog()" mat-icon-button class="add-user-btn" matTooltip="Add new user"
         matTooltipPosition="above">

@@ -1,24 +1,33 @@
 <section>
+@if (firebaseService.allProducts.length > 0) {
     @for (product of firebaseService.allProducts; track product.id) {
-    <div class="list-item">
-        <div class="product-info">
-            <h2 matListItemTitle>{{ product.title }}</h2>
-            <span matListItemLine>{{ product.description }}</span>
+        <div class="list-item">
+            <div class="product-info">
+                <h2 matListItemTitle>{{ product.title }}</h2>
+                <span matListItemLine>{{ product.description }}</span>
+            </div>
+    
+            <div class="date-container">
+                <span>On offer since:</span>
+                <span>{{ firebaseService.getDate(product.timeStamp) }}</span>
+            </div>
+    
+            <div class="price-container">
+                <span matListItemLine>{{ addDecimalNumbers(product.price) }}€</span>
+            </div>
+    
+            <i matTooltip="delete product" class="material-icons delete-btn" (click)="deleteProduct(product.idField)">delete</i>
+    
         </div>
-
-        <div class="date-container">
-            <span>On offer since:</span>
-            <span>{{ firebaseService.getDate(product.timeStamp) }}</span>
+        }
+} @else {
+    <div class="empty-section">
+        <div class="empty-container">
+            <i class="material-icons">no_sim</i>
+            <span>There are no products at the moment</span>
         </div>
-
-        <div class="price-container">
-            <span matListItemLine>{{ addDecimalNumbers(product.price) }}€</span>
-        </div>
-
-        <i matTooltip="delete product" class="material-icons delete-btn" (click)="deleteProduct(product.idField)">delete</i>
-
     </div>
-    }
+}
 
     <button (click)="openAddUserDialog()" mat-icon-button class="add-user-btn" matTooltip="Add new product"
         matTooltipPosition="above">

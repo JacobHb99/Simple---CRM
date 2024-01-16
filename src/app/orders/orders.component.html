@@ -1,55 +1,67 @@
-<div class="headline-container">
-    <h1>Todo:</h1>
-    <h1>{{ firebaseService.todoOrders.length }} Tasks</h1>
-</div>
-<div class="line"></div>
 
-@for (order of firebaseService.todoOrders; track $index) {
-    @if (!order.status) {
-        <div class="order-container">
-            <div class="left">
-                <div class="amount-container">
-                    <h2>{{ order.amount }}x</h2>
-                    <h2>{{ order.title }}</h2>
-                </div>
 
-                <h4>{{ order.description }}</h4>
-                <span>Customer: {{ order.user }}</span>
-            </div>
+
+@if (firebaseService.allOrders.length > 0) {
+    <div class="headline-container">
+        <h1>Todo:</h1>
+        <h1>{{ firebaseService.todoOrders.length }} Tasks</h1>
+    </div>
+    <div class="line"></div>
     
-            <div class="right">
-                <button (click)="checkOrderAsDone(order, $index)" mat-icon-button matTooltip="Remove from todo-list">
-                    <i class="material-icons">check</i>
-                </button>
+    @for (order of firebaseService.todoOrders; track $index) {
+        @if (!order.status) {
+            <div class="order-container">
+                <div class="left">
+                    <div class="amount-container">
+                        <h2>{{ order.amount }}x {{ order.title }}</h2>
+                    </div>
+    
+                    <h4>{{ order.description }}</h4>
+                    <span>Customer: {{ order.user }}</span>
+                </div>
+        
+                <div class="right">
+                    <button (click)="checkOrderAsDone(order, $index)" mat-icon-button matTooltip="Remove from todo-list">
+                        <i class="material-icons">check</i>
+                    </button>
+                </div>
             </div>
-        </div>
+        }
     }
+    
+    <div class="headline-container done">
+        <h1>Done:</h1>
+        <h1>{{ firebaseService.doneOrders.length }} Tasks</h1>
+    </div>
+    <div class="line"></div>
+    
+    @for (order of firebaseService.doneOrders; track $index) {
+        @if (order.status) {
+            <div class="order-container">
+                <div class="left">
+                    <div class="amount-container">
+                        <h2>{{ order.amount }}x</h2>
+                        <h2>{{ order.title }}</h2>
+                    </div>
+    
+                    <h4>{{ order.description }}</h4>
+                    <span>Customer: {{ order.user }}</span>
+                </div>
+        
+                <div class="right">
+                    <button (click)="checkOrderAsDone(order, $index)" mat-icon-button matTooltip="get the order back">
+                        <i class="material-icons">backspace</i>
+                    </button>
+                </div>
+            </div>
+        }
+    }
+} @else {
+    <div class="empty-section">
+        <div class="empty-container">
+            <i class="material-icons">no_sim</i>
+            <span>There are no Orders at the moment</span>
+        </div>
+    </div>
 }
 
-<div class="headline-container done">
-    <h1>Done:</h1>
-    <h1>{{ firebaseService.doneOrders.length }} Tasks</h1>
-</div>
-<div class="line"></div>
-
-@for (order of firebaseService.doneOrders; track $index) {
-    @if (order.status) {
-        <div class="order-container">
-            <div class="left">
-                <div class="amount-container">
-                    <h2>{{ order.amount }}x</h2>
-                    <h2>{{ order.title }}</h2>
-                </div>
-
-                <h4>{{ order.description }}</h4>
-                <span>Customer: {{ order.user }}</span>
-            </div>
-    
-            <div class="right">
-                <button (click)="checkOrderAsDone(order, $index)" mat-icon-button matTooltip="get the order back">
-                    <i class="material-icons">backspace</i>
-                </button>
-            </div>
-        </div>
-    }
-}

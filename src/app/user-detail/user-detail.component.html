@@ -85,7 +85,16 @@
           </mat-card>
     </div>
 
-    <app-user-order-list [orders]=orders></app-user-order-list>
+    @if (orders.length > 0) {
+        <app-user-order-list [orders]=orders></app-user-order-list>
+    } @else {
+        <div class="empty-section">
+            <div class="empty-container">
+                <i class="material-icons">no_sim</i>
+                <span>There are no Orders at the moment</span>
+            </div>
+        </div>
+    }
 
     <button (click)="openOrderDialog()" mat-icon-button class="add-user-btn" matTooltip="Add new order"
         matTooltipPosition="above">

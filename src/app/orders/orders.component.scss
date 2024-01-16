@@ -59,8 +59,7 @@ button{
     }
 
     .left{
-
-
+        margin-right: 16px;
 
         .amount-container{
             @include displayFlex(flex-start, flex-start);
@@ -69,6 +68,7 @@ button{
     }
 
     .right{
+        @include displayFlex(flex-end);
 
         button{
             @include displayFlex();
@@ -77,6 +77,40 @@ button{
 
     .text-container{
         width: 35%;
+    }
+}
+
+.empty-section{
+    height: calc(100vh - 80px);
+    width: 100%;
+    @include displayFlex();
+
+    .empty-container{
+        border-radius: 16px;
+        padding: 24px;
+        font-size: 16px;
+        @include displayFlex(center, center, column);
+        gap: 16px;
+        background-color: #002435;
+
+
+        i{
+            font-size: 160px !important;
+            color: #264958;
+        }
+    }
+}
+
+@media(max-width: 700px) {
+    .order-container{
+        @include displayFlex(center, center, column !important);
+        row-gap: 16px;
+
+        .right{
+            width: 100%;
+            @include displayFlex(flex-end !important);
+        }
+
     }
 }
 

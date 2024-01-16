@@ -17,12 +17,14 @@ h1 {
 
 .order-container {
     @include displayFlex(space-between, center);
+    flex-wrap: wrap;
     border: 2px solid $mainColor;
     border-radius: 16px;
     background-color: #002435;
     padding: 16px;
     margin-top: 16px;
     position: relative;
+    padding-top: 32px;
 
     &:hover{
         border: 2px solid $secondColor;
@@ -30,7 +32,8 @@ h1 {
 
 
     .text-container {
-        width: 35%;
+        width: fit-content;
+        margin-right: 16px;
     }
 }
 
@@ -44,10 +47,13 @@ h1 {
 .total {
     font-size: 16px;
     font-weight: 700;
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
 }
 
 .date {
     position: absolute;
-    bottom: 16px;
+    top: 16px;
     right: 16px;
 }
