@@ -37,6 +37,7 @@ export class DashboardComponent {
     xData: Array(),
     yData: Array(),
   };
+  sub: any;
 
   public chart!: any;
   total!: string;
@@ -57,13 +58,18 @@ export class DashboardComponent {
     this.getUsers();
   }
 
+
+  ngOnDestroy() {
+    this.sub();
+  }
+
   /**
    * Get data from all users from firestore.
    */
   async getUsers() {
     const userCollection = collection(this.firestore, 'users');
     const q = query(userCollection);
-    const unsubscribe = onSnapshot(q, (snapshot) => {
+    this.sub = onSnapshot(q, (snapshot) => {
       this.allUsers = [];
       this.todoOrders = [];
       this.doneOrders = [];
@@ -81,8 +87,8 @@ export class DashboardComponent {
    * Calls function with individual data, to create charts.
    */
   createCharts() {
-    this.createChart("totalsChart", 'bar', this.userChartData, 'Totals (€)', 'white');
-    this.createChart("datesChart", 'line', this.dateChartData, 'Orders per day', '#f62901');
+    this.createBarChart("totalsChart", 'bar', this.userChartData, 'Totals (€)', 'white');
+    this.createLineChart("datesChart", 'line', this.dateChartData, 'Orders per day', '#f62901');
     this.createDoughnutChart("orderStatusChart", 'doughnut', 'Orderstatus', '#f62901');
   }
 
@@ -127,10 +133,10 @@ export class DashboardComponent {
     for (let i = 0; i < user.orders.length; i++) {
       const order = user.orders[i];
       this.allOrders.push(order);
-      price = this.calculateTotals(price, Number(order.price));
-      amount = this.calculateTotals(amount, Number(order.amount));
+      price = this.calculateTotals(price, Number(order.price) * order.amount);
+      amount = this.calculateTotals(amount, Number(order.amount));  
     }
-    this.userChartData.yData.push(Number(price));
+    this.userChartData.yData.push(price);
     this.allAmounts.push(amount);
   }
 
@@ -192,16 +198,16 @@ export class DashboardComponent {
       today = Number(today) - dayInms;
       let yesterday = Number(today) - dayInms;
       this.dateChartData.xData.unshift(this.getDate(today));
-      }
+    }
     this.createDateData();
   }
 
 
   createDateData() {
-/*     this.dateChartData.yData = Array.from(
-      this.allDates.reduce((r, c) => r.set(c, (r.get(c) || 0) + 1), new Map()),
-      (([xData, yData]) => (yData)),
-    ) */
+    /*     this.dateChartData.yData = Array.from(
+          this.allDates.reduce((r, c) => r.set(c, (r.get(c) || 0) + 1), new Map()),
+          (([xData, yData]) => (yData)),
+        ) */
     for (let i = 0; i < 7; i++) {
       let result = [];
       const data = this.dateChartData.xData[i];
@@ -233,7 +239,55 @@ export class DashboardComponent {
    * @param label 
    * @param color 
    */
-  createChart(chartId: string, chartType: any, data: any, label: string, color: any) {
+  createBarChart(chartId: string, chartType: any, data: any, label: string, color: any) {
+    let chartExist = Chart.getChart(chartId); // <canvas> id
+    if (chartExist != undefined) {
+      chartExist.destroy();
+    }
+    this.chart = new Chart(chartId, {
+      type: chartType, //this denotes tha type of chart
+
+      data: {// values on X-Axis
+        labels: data.xData,
+        datasets: [
+          {
+            label: label,
+            data: data.yData,
+
+            barPercentage: 0.5,
+            barThickness: 32,
+            maxBarThickness: 32,
+            minBarLength: 2,
+            backgroundColor: color,
+            borderColor: 'white',
+            borderRadius: 4,
+            hoverBackgroundColor: '#f21901',
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        aspectRatio: 5,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+
+    });
+  }
+
+
+  /**
+   * Creates chart.
+   * @param chartId 
+   * @param chartType 
+   * @param data 
+   * @param label 
+   * @param color 
+   */
+  createLineChart(chartId: string, chartType: any, data: any, label: string, color: any) {
     let chartExist = Chart.getChart(chartId); // <canvas> id
     if (chartExist != undefined) {
       chartExist.destroy();
@@ -250,13 +304,13 @@ export class DashboardComponent {
             backgroundColor: color,
             borderColor: 'white',
             pointHoverBackgroundColor: '#f62901',
-            borderRadius: 16,
-            hoverBackgroundColor: '#f21901'
+            borderRadius: 4,
+            hoverBackgroundColor: '#f21901',
           }
         ]
       },
       options: {
-        aspectRatio: 4,
+        aspectRatio: 5,
         scales: {
           y: {
             beginAtZero: true
@@ -266,6 +320,7 @@ export class DashboardComponent {
 
     });
   }
+
 
 
   createDoughnutChart(chartId: string, chartType: any, label: string, color: any) {
@@ -302,7 +357,7 @@ export class DashboardComponent {
   }
 
 
-  changeChartSize() {
+/*   changeChartSize() {
     this.totalsChart.canvas.parentNode.style.height = '40vh';
     this.totalsChart.canvas.parentNode.style.width = 'calc(100vw - 112px)';
 
@@ -313,6 +368,6 @@ export class DashboardComponent {
 
     this.orderStatusChart.canvas.parentNode.style.height = '40vh';
     this.orderStatusChart.canvas.parentNode.style.width = 'calc(100vw - 112px)';
-  }
+  } */
 
 }

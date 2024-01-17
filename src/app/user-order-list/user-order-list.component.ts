@@ -11,6 +11,7 @@ import { FirebaseServiceService } from '../firebase-service.service';
 export class UserOrderListComponent {
   @Input() orders!: any;
   dates = Array();
+  currentTotal: string = '0,00';
 
   constructor(public firebaseService: FirebaseServiceService) {
   }
@@ -18,7 +19,7 @@ export class UserOrderListComponent {
   ngOnInit() {
     for (let i = 0; i < this.orders.length; i++) {
       const order = this.orders[i];
-        order.priceString = this.addDecimalNumbers(order.price);
+        order.priceString = this.addDecimalNumbers(order.price * order.amount);
         console.log(order);
     }
   }

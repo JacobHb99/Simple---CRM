@@ -71,7 +71,7 @@ export class FirebaseServiceService {
       order.userId = id;
       this.allOrders.push(order);
       this.checkStatus(order);
-    }
+    }    
   }
 
 

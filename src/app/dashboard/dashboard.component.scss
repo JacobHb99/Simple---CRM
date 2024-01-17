@@ -45,15 +45,10 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
         border-radius: 16px;
         padding: 16px;
         cursor: pointer;
-        width: 100%;
-        min-width: 240px;
         background-color: #002435;
         @include displayFlex();
-        height: min-content;
 
-        .chart {
-
-        }
+        .chart {}
 
         &:hover {
             border: 2px solid $secondColor;
@@ -63,12 +58,11 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
 
 
     @media(max-width: 700px) {
-        .line-chart{
+        .chart-container {
             height: auto !important;
             width: 100% !important;
         }
 
-        .chart{}
+        .chart {}
     }
 }
-

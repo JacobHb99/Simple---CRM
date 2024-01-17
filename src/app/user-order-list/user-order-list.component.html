@@ -3,9 +3,6 @@
 
 @for (order of orders; track $index) {
             <div class="order-container">
-                <div class="total">
-                    {{ order.amount }}x
-                </div>
         
                 <div class="text-container">
                     <h2>{{ order.amount }}x {{ order.title }}</h2>
@@ -13,7 +10,7 @@
                 </div>
         
                 <div>
-                    <span class="total">{{ addDecimalNumbers(order.price * order.amount) }}€</span>
+                    <span class="total">{{ order.priceString }}€</span>
                 </div>
         
                 <span class="date">{{ firebaseService.getDate(order.orderTimeStamp) }}</span>

@@ -15,16 +15,20 @@
     </div>
 </div> -->
 
-<section class="wrap-charts">
-    <div class="chart-container" style="position: relative; height:35vh; width:calc(100vw - 412px)">
-        <canvas class="chart" #totalsChart id="totalsChart">{{ chart }}</canvas>
-    </div>
-
-    <div class="chart-container line-chart" style="position: relative; height:35vh; width:calc(100vw - 412px)">
-        <canvas class="chart" #datesChart id="datesChart">{{ chart }}</canvas>
-    </div>
-
+<section class="wrap-charts">   
     <div class="chart-container" style="position: relative; height:50vh; width:calc(100vw - 412px)">
         <canvas class="chart doughnut-chart" #orderStatusChart id="orderStatusChart">{{ chart }}</canvas>
     </div>
+    
+    <div class="chart-container" style="position: relative; min-height: 10vh; height:auto; width:calc(100vw - 412px)">
+        <canvas class="chart" #totalsChart id="totalsChart">{{ chart }}</canvas>
+    </div>
+
+    <div class="chart-container line-chart" style="position: relative; height:auto; width:calc(100vw - 412px)">
+        <canvas class="chart" #datesChart id="datesChart">{{ chart }}</canvas>
+    </div>
+
+
+
+
 </section>
