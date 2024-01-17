@@ -159,7 +159,6 @@ export class DashboardComponent {
       total += order.price * order.amount;
       this.total = total.toFixed(2);
     }
-    this.createDateData();
   }
 
 
@@ -176,19 +175,57 @@ export class DashboardComponent {
     for (let i = 0; i < this.stampArr.length; i++) {
       const stamp = this.stampArr[i];
       this.allDates.push(this.getDate(stamp));
+      console.log(this.allDates);
+
     }
+    this.getLastWeekDates();
+  }
+
+
+  getLastWeekDates() {
+    this.dateChartData.xData = [];
+    let dayInms = 86400000;
+    let today = Date.now();
+    this.dateChartData.xData.unshift(this.getDate(today));
+
+    for (let i = 0; i <= 5; i++) {
+      today = Number(today) - dayInms;
+      let yesterday = Number(today) - dayInms;
+      this.dateChartData.xData.unshift(this.getDate(today));
+      }
+    this.createDateData();
   }
 
 
   createDateData() {
-    this.dateChartData.xData = Array.from(
-      this.allDates.reduce((r, c) => r.set(c, (r.get(c) || 0) + 1), new Map()),
-      (([xData, yData]) => (xData)),
-    )
+    /*     this.dateChartData.xData = Array.from(
+          this.allDates.reduce((r, c) => r.set(c, (r.get(c) || 0) + 1), new Map()),
+          (([xData, yData]) => (xData)),
+        ) */
+
     this.dateChartData.yData = Array.from(
       this.allDates.reduce((r, c) => r.set(c, (r.get(c) || 0) + 1), new Map()),
       (([xData, yData]) => (yData)),
     )
+
+
+    for (let i = 0; i < 7; i++) {
+      let result = [];
+      const data = this.dateChartData.xData[i];
+      let included = this.allDates.includes(data);
+      result = this.allDates.filter((date) => date == data);
+
+      if (included) {
+        console.log('date', data);
+        console.log(result);
+        this.dateChartData.yData[i] = result.length;
+
+      } else {
+        this.dateChartData.yData[i] = 0;
+      }
+
+    }
+    console.log(this.dateChartData);
   }
 
 

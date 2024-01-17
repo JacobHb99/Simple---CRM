@@ -20,7 +20,6 @@ export class UserOrderListComponent {
       const order = this.orders[i];
         order.priceString = this.addDecimalNumbers(order.price);
         console.log(order);
-        
     }
   }
 
