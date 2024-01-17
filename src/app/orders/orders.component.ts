@@ -33,17 +33,17 @@ export class OrdersComponent {
 
 
   checkOrderAsDone(order: any, $index: any) {
-    this.updateStatus(order);
+    this.updateStatus(order, $index);
   }
 
 
-  async updateStatus(order: any) {
+  async updateStatus(order: any, i: number) {
     let currentUser = this.firebaseService.getSingleDoc(order.userId);
-    console.log('order', order);
+    let changedOrder = order;
+
     this.deleteOldStatusOrder(currentUser, order);
-    order.status = !order.status;
-    console.log('order', order);
-    this.pushNewStatusOrder(currentUser, order);
+    changedOrder.status = !changedOrder.status;
+    this.pushNewStatusOrder(currentUser, changedOrder);
   }
 
 

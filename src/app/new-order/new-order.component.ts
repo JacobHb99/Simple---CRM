@@ -95,9 +95,11 @@ export class NewOrderComponent {
   async updateUserOrdersDoc(order: any, currentUser: any, i: number) {
     for (let k = 0; k < order.length; k++) {
       const element = order[k];
-      element.orderId = `${currentUser.lastName}-${i}-${k}`;
+      
+      element.orderId = `${currentUser.id}-${i}-${k}`;
       element.orderTimeStamp = Date.now();
-      element.status = false;      
+      element.status = false;    
+      element.idField = i;  
 
       await updateDoc(currentUser, {
         orders: arrayUnion(element)
