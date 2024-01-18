@@ -1,0 +1,19 @@
+@import '../../styles.scss';
+$material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/';
+
+.chart-container {
+    border: 2px solid $mainColor;
+    border-radius: 16px;
+    padding: 16px;
+    cursor: pointer;
+    background-color: #002435;
+    @include displayFlex();
+
+    .chart {}
+
+    &:hover {
+        border: 2px solid $secondColor;
+        //color: ,
+    }
+
+}

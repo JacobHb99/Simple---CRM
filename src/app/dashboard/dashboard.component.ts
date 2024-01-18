@@ -1,25 +1,27 @@
-import { Component, Injectable, ViewChildren, inject } from '@angular/core';
+import { Component, ElementRef, Injectable, ViewChildren, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DocumentData, Firestore, collection, collectionData, doc, getDoc, onSnapshot, query } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import Chart from 'chart.js/auto';
 
+
 @Injectable({
   providedIn: 'root'
 })
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [
-    MatCardModule,
-    HttpClientModule,
-  ],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+    selector: 'app-dashboard',
+    standalone: true,
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.scss',
+    imports: [
+        MatCardModule,
+        HttpClientModule,
+    ]
 })
 export class DashboardComponent {
+  unSub: any;
   userAmount!: number;
   users$: Observable<any[]>;
   firestore: Firestore = inject(Firestore);
@@ -29,6 +31,13 @@ export class DashboardComponent {
   todoOrders = Array();
   allAmounts = Array();
   allDates = Array();
+  public chart!: any;
+  total!: string;
+  stampArr = Array();
+  @ViewChildren('totalsChart') totalsChart!: ElementRef;
+  @ViewChildren('datesChart') datesChart!: ElementRef;
+  @ViewChildren('orderStatusChart') orderStatusChart!: ElementRef;
+
   userChartData = {
     xData: Array(),
     yData: Array(),
@@ -37,14 +46,8 @@ export class DashboardComponent {
     xData: Array(),
     yData: Array(),
   };
-  sub: any;
 
-  public chart!: any;
-  total!: string;
-  stampArr = Array();
-  @ViewChildren('totalsChart') totalsChart: any;
-  @ViewChildren('datesChart') datesChart: any;
-  @ViewChildren('orderStatusChart') orderStatusChart: any;
+
 
 
 
@@ -60,7 +63,7 @@ export class DashboardComponent {
 
 
   ngOnDestroy() {
-    this.sub();
+    this.unSub();
   }
 
   /**
@@ -69,7 +72,7 @@ export class DashboardComponent {
   async getUsers() {
     const userCollection = collection(this.firestore, 'users');
     const q = query(userCollection);
-    this.sub = onSnapshot(q, (snapshot) => {
+    this.unSub = onSnapshot(q, (snapshot) => {
       this.allUsers = [];
       this.todoOrders = [];
       this.doneOrders = [];
@@ -87,8 +90,9 @@ export class DashboardComponent {
    * Calls function with individual data, to create charts.
    */
   createCharts() {
-    this.createBarChart("totalsChart", 'bar', this.userChartData, 'Totals (€)', 'white');
+    debugger;
     this.createLineChart("datesChart", 'line', this.dateChartData, 'Orders per day', '#f62901');
+    this.createBarChart("totalsChart", 'bar', this.userChartData, 'Totals (€)', 'white');
     this.createDoughnutChart("orderStatusChart", 'doughnut', 'Orderstatus', '#f62901');
   }
 
@@ -231,7 +235,8 @@ export class DashboardComponent {
   }
 
 
-  /**
+
+   /**
    * Creates chart.
    * @param chartId 
    * @param chartType 
@@ -239,6 +244,41 @@ export class DashboardComponent {
    * @param label 
    * @param color 
    */
+  createLineChart(chartId: string, chartType: any, data: any, label: string, color: any) {
+    let chartExist = Chart.getChart(chartId); // <canvas> id
+    if (chartExist != undefined) {
+      chartExist.destroy();
+    }
+    this.chart = new Chart(chartId, {
+      type: chartType, //this denotes tha type of chart
+
+      data: {// values on X-Axis
+        labels: data.xData,
+        datasets: [
+          {
+            label: label,
+            data: data.yData,
+            backgroundColor: color,
+            borderColor: 'white',
+            pointHoverBackgroundColor: '#f62901',
+            borderRadius: 4,
+            hoverBackgroundColor: '#f21901',
+          }
+        ]
+      },
+      options: {
+        aspectRatio: 5,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+
+    });
+  }
+
+
   createBarChart(chartId: string, chartType: any, data: any, label: string, color: any) {
     let chartExist = Chart.getChart(chartId); // <canvas> id
     if (chartExist != undefined) {
@@ -287,42 +327,6 @@ export class DashboardComponent {
    * @param label 
    * @param color 
    */
-  createLineChart(chartId: string, chartType: any, data: any, label: string, color: any) {
-    let chartExist = Chart.getChart(chartId); // <canvas> id
-    if (chartExist != undefined) {
-      chartExist.destroy();
-    }
-    this.chart = new Chart(chartId, {
-      type: chartType, //this denotes tha type of chart
-
-      data: {// values on X-Axis
-        labels: data.xData,
-        datasets: [
-          {
-            label: label,
-            data: data.yData,
-            backgroundColor: color,
-            borderColor: 'white',
-            pointHoverBackgroundColor: '#f62901',
-            borderRadius: 4,
-            hoverBackgroundColor: '#f21901',
-          }
-        ]
-      },
-      options: {
-        aspectRatio: 5,
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-
-    });
-  }
-
-
-
   createDoughnutChart(chartId: string, chartType: any, label: string, color: any) {
     let chartExist = Chart.getChart(chartId); // <canvas> id
     if (chartExist != undefined) {

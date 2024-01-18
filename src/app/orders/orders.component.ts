@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FirebaseServiceService } from '../firebase-service.service';
 import { arrayRemove, arrayUnion, updateDoc } from '@firebase/firestore';
-import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
+import {  MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -21,7 +21,6 @@ export class OrdersComponent {
   isLoading = true;
   doneOrders = Array();
   todoOrders = Array();
-
 
 
   constructor(public dialog: MatDialog, public firebaseService: FirebaseServiceService) {}

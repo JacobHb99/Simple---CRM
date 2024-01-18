@@ -5,11 +5,7 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
 .headline-container{
     @include displayFlex(space-between);
     color: $secondColor;
-
-    h1{
-    }
 }
-
 
 .line{
     height: 2px;
@@ -110,7 +106,6 @@ button{
             width: 100%;
             @include displayFlex(flex-end !important);
         }
-
     }
 }
 
