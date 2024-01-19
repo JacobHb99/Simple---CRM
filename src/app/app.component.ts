@@ -87,13 +87,13 @@ export class AppComponent {
       this.sideNavMode = 'side';
     } else if (this.breakpointObserver.isMatched(Breakpoints.HandsetPortrait)) {
       this.currentBreakpoint = Breakpoints.HandsetPortrait;
-      this.sideNavMode = 'side';
-            this.sideNavMode = 'push';
+      this.sideNavMode = 'push';
     } else if (this.breakpointObserver.isMatched('(min-width: 500px)')) {
       this.currentBreakpoint = '(min-width: 500px)';
       this.sideNavMode = 'side';
     } else {
       this.sideNavMode = 'side';
+      this.currentBreakpoint = Breakpoints.Large;
     }
   }
 

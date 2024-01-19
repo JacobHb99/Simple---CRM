@@ -2,7 +2,7 @@
 $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/';
 
 .dash-header {
-    @include displayFlex(flex-start);
+    @include displayFlex();
     gap: 16px;
     flex-wrap: wrap;
     margin-bottom: 16px;
@@ -10,26 +10,36 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
 
 .dash-container {
     padding: 16px;
+    min-width: 200px;
+    width: calc(25% - 44px);
     background-color: $fontColor;
     color: $bgColor;
     border-radius: 16px;
-    @include displayFlex(center, center, column);
+    @include displayFlex(space-between, center);
     cursor: pointer;
-
 
     &:hover {
         background-color: $secondColor;
         color: $fontColor;
     }
 
-    h2 {
-        font-size: 32px;
-        font-weight: 900;
+    i{
+        font-size: 56px;
     }
 
-    span {
-        font-size: 24px;
-        font-weight: 700;
+    .dash-info{
+        @include displayFlex(center, center, column);
+
+
+        h2 {
+            font-size: 32px;
+            font-weight: 900;
+        }
+    
+        span {
+            font-size: 24px;
+            font-weight: 700;
+        }
     }
 }
 
@@ -54,15 +64,16 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
             border: 2px solid $secondColor;
             //color: ,
         }
-    }
 
-
-    @media(max-width: 700px) {
-        .chart-container {
-            height: auto !important;
-            width: 100% !important;
+        .full-width-chart{
+            position: relative; 
+            height: 30vh; 
+            width: calc(100vw - 412px);
         }
-
-        .chart {}
     }
+
+
+
+
+
 }

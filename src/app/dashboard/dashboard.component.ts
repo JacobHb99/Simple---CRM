@@ -1,9 +1,13 @@
-import { Component, ElementRef, Injectable, ViewChildren, inject } from '@angular/core';
+import { Component, ElementRef, Injectable, Input, ViewChildren, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DocumentData, Firestore, collection, collectionData, doc, getDoc, onSnapshot, query } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import Chart from 'chart.js/auto';
+import { AppComponent } from '../app.component';
+import { CommonModule } from '@angular/common';
+import {MatGridListModule} from '@angular/material/grid-list';
+
 
 
 @Injectable({
@@ -18,6 +22,8 @@ import Chart from 'chart.js/auto';
     imports: [
         MatCardModule,
         HttpClientModule,
+        MatGridListModule,
+        CommonModule
     ]
 })
 export class DashboardComponent {
@@ -37,7 +43,7 @@ export class DashboardComponent {
   @ViewChildren('totalsChart') totalsChart!: ElementRef;
   @ViewChildren('datesChart') datesChart!: ElementRef;
   @ViewChildren('orderStatusChart') orderStatusChart!: ElementRef;
-
+  @Input() currentBreakpoint: any;
   userChartData = {
     xData: Array(),
     yData: Array(),
@@ -90,7 +96,6 @@ export class DashboardComponent {
    * Calls function with individual data, to create charts.
    */
   createCharts() {
-    debugger;
     this.createLineChart("datesChart", 'line', this.dateChartData, 'Orders per day', '#f62901');
     this.createBarChart("totalsChart", 'bar', this.userChartData, 'Totals (€)', 'white');
     this.createDoughnutChart("orderStatusChart", 'doughnut', 'Orderstatus', '#f62901');
@@ -267,10 +272,16 @@ export class DashboardComponent {
         ]
       },
       options: {
+        maintainAspectRatio: false,
         aspectRatio: 5,
         scales: {
           y: {
             beginAtZero: true
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'bottom'
           }
         }
       }
@@ -296,7 +307,6 @@ export class DashboardComponent {
 
             barPercentage: 0.5,
             barThickness: 32,
-            maxBarThickness: 32,
             minBarLength: 2,
             backgroundColor: color,
             borderColor: 'white',
@@ -306,11 +316,23 @@ export class DashboardComponent {
         ]
       },
       options: {
+        maintainAspectRatio: false,
         indexAxis: 'y',
         aspectRatio: 5,
         scales: {
           y: {
-            beginAtZero: true
+            beginAtZero: true,
+            grid: {
+              offset: false
+            }
+          }
+        },
+        plugins: {
+          customCanvasBackgroundColor: {
+            color: 'lightGreen',
+          },
+          legend: {
+            position: 'bottom'
           }
         }
       }
@@ -351,9 +373,13 @@ export class DashboardComponent {
         ]
       },
       options: {
+        maintainAspectRatio: false,
         plugins: {
+          customCanvasBackgroundColor: {
+            color: 'lightGreen',
+          },
           legend: {
-            position: 'right'
+            position: 'bottom'
           }
         }
       }

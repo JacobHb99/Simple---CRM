@@ -1,30 +1,47 @@
-<!-- <div class="dash-header">
+<div class="dash-header">
     <div class="dash-container">
-        <h2>{{ allUsers.length }}</h2>
-        <span>User</span>
-    </div>
-    
-    <div class="dash-container">
-        <h2>{{ allOrders.length }}</h2>
-        <span>Orders</span>
+        <i class="material-icons">monetization_on</i>
+        <div class="dash-info">
+            <h2>{{ allUsers.length }}</h2>
+            <span>User</span>
+        </div>
     </div>
 
     <div class="dash-container">
-        <h2>{{ total }}€</h2>
-        <span>Total</span>
+        <i class="material-icons">account_circle</i>        
+        <div class="dash-info">
+            <h2>{{ allUsers.length }}</h2>
+            <span>User</span>
+        </div>
     </div>
-</div> -->
 
-<section class="wrap-charts">   
-    <div class="chart-container" style="position: relative; height:50vh; width:calc(100vw - 412px)">
+    <div class="dash-container">
+        <i class="material-icons">all_inbox</i>
+        <div class="dash-info">
+            <h2>{{ allOrders.length }}</h2>
+            <span>Orders</span>
+        </div>
+    </div>
+
+    <div class="dash-container">
+        <i class="material-icons">monetization_on</i>
+        <div class="dash-info">
+            <h2>{{ total }}€ </h2>
+            <span>Total</span>
+        </div>
+    </div>
+</div>
+
+<section class="wrap-charts">
+    <div class="chart-container" style="position: relative; height:30vh; width:calc(100% - 32px)">
         <canvas class="chart doughnut-chart" #orderStatusChart id="orderStatusChart">{{ chart }}</canvas>
     </div>
-    
-    <div class="chart-container line-chart" style="position: relative; height:auto; width:calc(100vw - 412px)">
+
+    <div class="chart-container line-chart" style="position: relative; height:30vh; width:calc(100% - 32px)">
         <canvas class="chart" #datesChart id="datesChart">{{ chart }}</canvas>
     </div>
 
-    <div class="chart-container" style="position: relative; min-height: 10vh; height:auto; width:calc(100vw - 412px)">
+    <div class="chart-container bar-chart" style="position: relative; height:30vh; width:calc(100% - 32px)">
         <canvas class="chart" #totalsChart id="totalsChart">{{ chart }}</canvas>
     </div>
 </section>
