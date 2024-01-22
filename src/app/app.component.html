@@ -2,7 +2,12 @@
   <mat-drawer class="sidenav-container mobile-nav" #drawer [mode]="sideNavMode" 
   [opened]="sideNavOpen" [ngClass]="{'mobile-nav': currentBreakpoint == Breakpoints.HandsetPortrait}">
     <div class="logo">
-      Simple-CRM
+      <div class="logo-text" >
+        <span>Simple-</span>
+        <span class="c">C</span>
+        <span class="r">R</span>
+        <span class="m">M</span>
+      </div>
     </div>
 
     @if (currentBreakpoint == Breakpoints.HandsetPortrait) {

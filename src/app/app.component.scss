@@ -25,9 +25,11 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
             padding: 16px;
             font-size: 32px;
             font-weight: 900;
-            color: $secondColor;
-            
             @include displayFlex(center, center, row);
+
+            .r{
+                color: $bgColor !important;
+            }
         }
 
         ul{
@@ -89,17 +91,18 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
             height: 64px;
         }
     
-        .logo-text{
-            margin-right: 56px;
-    
-            .c{
-                color: $secondColor;
-            }
-    
-            .r{
-                color: $mainColor;
-            }
-        }
+    }
+}
+
+.logo-text{
+    margin-right: 56px;
+
+    .c{
+        color: $secondColor;
+    }
+
+    .r{
+        color: $mainColor;
     }
 }
 
