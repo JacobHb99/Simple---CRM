@@ -6,42 +6,45 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
     gap: 16px;
     flex-wrap: wrap;
     margin-bottom: 16px;
+
+
+    
 }
 
 .dash-container {
-    padding: 16px;
-    min-width: 200px;
-    width: calc(25% - 44px);
-    background-color: $fontColor;
-    color: $bgColor;
-    border-radius: 16px;
-    @include displayFlex(space-between, center);
-    cursor: pointer;
-
-    &:hover {
-        background-color: $secondColor;
-        color: $fontColor;
-    }
-
-    i{
-        font-size: 56px;
-    }
-
-    .dash-info{
-        @include displayFlex(center, center, column);
-
-
-        h2 {
-            font-size: 32px;
-            font-weight: 900;
+        padding: 16px;
+        width: calc(100% - 32px);
+        background-color: $fontColor;
+        color: $bgColor;
+        border-radius: 16px;
+        @include displayFlex(space-between, center);
+        cursor: pointer;
+    
+        &:hover {
+            background-color: $secondColor;
+            color: $fontColor;
         }
     
-        span {
-            font-size: 24px;
-            font-weight: 700;
+        i{
+            font-size: 56px;
+        }
+    
+        .dash-info{
+            @include displayFlex(center, center, column);
+    
+    
+            h2 {
+                font-size: 32px;
+                font-weight: 900;
+            }
+        
+            span {
+                font-size: 24px;
+                font-weight: 700;
+            }
         }
     }
-}
+
 
 .wrap-charts {
     @include displayFlex();

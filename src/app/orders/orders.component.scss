@@ -1,6 +1,11 @@
 @import '../../styles.scss';
 $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/';
 
+h1{
+    font-size: 32px;
+    font-weight: 700;
+}
+
 
 .headline-container{
     @include displayFlex(space-between);
@@ -49,6 +54,8 @@ button{
     padding: 16px;
     margin-top: 16px;
     cursor: pointer;
+    position: relative;
+
 
     &:hover{
         border: 2px solid $secondColor;
@@ -56,6 +63,7 @@ button{
 
     .left{
         margin-right: 16px;
+        margin-bottom: 16px;
 
         .amount-container{
             @include displayFlex(flex-start, flex-start);
@@ -69,6 +77,12 @@ button{
         button{
             @include displayFlex();
         }
+    }
+
+    .date{
+        position: absolute;
+        left: 16px;
+        bottom: 16px;
     }
 
     .text-container{

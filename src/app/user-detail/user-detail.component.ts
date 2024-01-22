@@ -87,8 +87,9 @@ export class UserDetailComponent {
     let price = 0;
     for (let i = 0; i < user.orders.length; i++) {
       const order = user.orders[i];
-      let orderPrice = order.price * order.amount;
-        price += orderPrice;
+      order.priceString = order.price * order.amount;
+        price += order.priceString;
+        order.priceString = this.addDecimalNumbers(order.priceString);
     }
     this.total = price;    
   }

@@ -32,8 +32,9 @@ h1 {
 
 
     .text-container {
-        width: fit-content;
+        width: 70%;
         margin-right: 16px;
+        margin-bottom: 16px;
     }
 }
 
@@ -54,6 +55,6 @@ h1 {
 
 .date {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    bottom: 16px;
+    left: 16px;
 }

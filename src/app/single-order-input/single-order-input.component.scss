@@ -10,10 +10,12 @@ gap: 16px;
 
 .amount-field{
     width: 80px;
+    color: $fontColor;
 }
 
 .form-field{
     color: $fontColor;
+    width: calc(100% - 96px);
 }
 
 .selectField {

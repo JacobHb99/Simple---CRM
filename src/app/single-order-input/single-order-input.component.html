@@ -1,5 +1,5 @@
 <section>
-    <mat-form-field appearance="outline" color="accent">
+    <mat-form-field appearance="outline" color="accent" class="form-field">
         <mat-label class="form-field">Selected product</mat-label>
         <mat-select (load)="createSingleOrderTask()" [(ngModel)]="selectedValues" name="product">
             @for (product of allProducts; track product) {
@@ -7,7 +7,8 @@
             }
         </mat-select>
     </mat-form-field>
-    <mat-form-field class="amount-field form-field" appearance="outline" color="accent">
+
+    <mat-form-field class="amount-field" appearance="outline" color="accent">
         <input min="1" type="number" (change)="createSingleOrderTask()" [(ngModel)]="amount" [disabled]="isLoading" matInput class="input">
     </mat-form-field>
 </section>

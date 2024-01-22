@@ -190,8 +190,6 @@ export class DashboardComponent {
     for (let i = 0; i < this.stampArr.length; i++) {
       const stamp = this.stampArr[i];
       this.allDates.push(this.getDate(stamp));
-      console.log(this.allDates);
-
     }
     this.getLastWeekDates();
   }
