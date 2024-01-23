@@ -29,6 +29,10 @@ section{
     }
 }
 
+.mdc-text-field__input {
+    color: $fontColor !important;
+}
+
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: transparent !important;
 }

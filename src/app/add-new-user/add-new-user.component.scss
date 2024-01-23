@@ -29,6 +29,10 @@ section{
     }
 }
 
+.mdc-text-field__input {
+    color: $fontColor !important;
+}
+
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: transparent !important;
 }
@@ -37,11 +41,4 @@ section{
     background-color: transparent !important;
 }
 
-.input{
-    color: $fontColor;
-}
-
-mat-mdc-button-touch-target {
-    color:  $fontColor !important;
-}
 
